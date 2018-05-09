@@ -1,3 +1,4 @@
+
 // All of the paths
 // Each path is a line formed between mouse press and mouse release
 // Each path contains an array of particles
@@ -11,14 +12,20 @@ let current
 let previous
 
 
-function setup() {
-	createCanvas(720, 400)
+function setup(position) {
+	let canvas = createCanvas(720, 400)
+	canvas.parent('sketch-holder');
 
 	current = createVector(0,0)
 	previous = createVector(0,0)
 	frameRate(60)
 
+
+	console.log('setup loaded')
+
+
 }
+
 
 function draw() {
 	background(300)
@@ -33,7 +40,7 @@ function draw() {
 		// add a particle with current position to current path
 		//   this.particles.push(new Particle(position, force, this.hue));
 		paths[paths.length-1].add(current)
-		console.log(paths)
+		// console.log(paths)
 
 		// schedule next circle
 		next = millis() + 100;
@@ -56,6 +63,60 @@ function draw() {
 
 
 
+
+
+
+
+let executeButton = document.getElementById('execute')
+executeButton.addEventListener('click', execute)
+
+// Particle explosion function
+function execute(){
+	console.log("clicked!")
+	// debugger
+
+	for(let i = 0; i < paths.length; i++){
+		let removeInterval = setInterval(()=>{
+
+				if(paths[i].particles.length > 0){
+					// debugger
+					wave.freq(paths[i].particles[0].position.x+100)
+					env.play()
+
+					paths[i].particles.splice(0,1)
+
+				}else{
+					wave.freq(defaultFrequency)
+					window.clearInterval(removeInterval)
+				}
+		}, 250)
+	}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//
+// MOUSE EVENTS
+//
+//
 // start when mouse is pressed
 function mousePressed(){
 	next = 0
@@ -116,6 +177,7 @@ Path.prototype.display = function(){
 
 function Particle(position, hue){
 	this.position = createVector(position.x, position.y)
+
 
 }
 
