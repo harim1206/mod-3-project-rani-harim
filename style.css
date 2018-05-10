@@ -1,0 +1,117 @@
+body {
+  margin:0;
+  padding:0;
+  overflow: hidden;
+}
+canvas {
+  margin:auto;
+}
+
+.button1 {
+ position: fixed;
+ bottom: 10px;
+ left: 41%;
+font-family: 'Source Code Pro';
+font-size: 14px;
+font-weight: bolder;
+background-color: rgba(6, 229, 20, 1);
+border: none;
+border-radius: 10px;
+}
+
+.button2 {
+position: fixed;
+ bottom: 10px;
+ left: 47%;
+ font-size: 14px;
+ font-family: 'Source Code Pro';
+ font-weight: bolder;
+ background-color: rgba(6, 229, 20, 1);
+ border: none;
+ border-radius: 20px;
+}
+
+.button3 {
+position: fixed;
+ bottom: 10px;
+ left: 52%;
+ font-size: 14px;
+ font-family: 'Source Code Pro';
+ font-weight: bolder;
+ background-color: rgba(6, 229, 20, 1);
+ border: none;
+ border-radius: 20px;
+}
+
+.button4 {
+position: fixed;
+ bottom: 10px;
+ left: 58%;
+ font-size: 14px;
+ font-family: 'Source Code Pro';
+ font-weight: bolder;
+ background-color: rgba(6, 229, 20, 1);
+ border: none;
+ border-radius: 20px;
+}
+
+.button5 {
+position: fixed;
+ bottom: 10px;
+ left: 66%;
+ font-size: 14px;
+ font-family: 'Source Code Pro';
+ font-weight: bolder;
+ background-color: rgba(6, 229, 20, 1);
+ border: none;
+ border-radius: 20px;
+}
+
+h1 {
+position: fixed;
+font-family: 'Roboto';
+font-weight: lighter;
+font-size: 60px;
+left: 47%;
+}
+
+
+
+
+/* HARIM */
+body {
+  margin:0;
+  padding:0;
+  overflow: hidden;
+
+
+
+}
+
+#sketch-holder {
+  margin:auto;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-play{
+  margin-top: 3%;
+  margin-left: 50%;
+  color: pink;
+}
+
+.fa-pause{
+  margin-top: 3%;
+  margin-left: 50%;
+  color: pink;
+}
+
+#drawing-title{
+  margin-left: 45%;
+}
+
+#submit-button{
+  margin-left: 6%;
+}

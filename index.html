@@ -7,6 +7,8 @@
 
 	<title>project</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 
 	<script src="libraries/p5.js"></script>
 	<script src="libraries/p5.dom.js"></script>
@@ -93,10 +95,33 @@
 	</style>
 </head>
 <body>
+	<button id="optionOne">Option1</button>
+	<button id="optionTwo">Option2</button>
+
+
+
+
+
+
+
+
 	<h1> Mu-z-art</h1>
-	<div id="sketch-holder">
-    <!-- Our sketch will go here! -->
-  </div>
+	<div id="canvas-wrap-div">
+		<div id="sketch-holder">
+	    <!-- Our sketch will go here! -->
+	  </div>
+
+		<div id="play-pause-button">
+			<i class="fas fa-play" id="playButton"></i>
+			<i class="fas fa-pause" id="pauseButton"></i>
+		</div>
+
+		<div id="drawing-title">
+			<form id="drawing-title-form">
+			  <input type="text" name="title" placeholder="title"><br>
+			  <input type="submit" value="Save" id="submit-button">
+			</form>
+		</div>
 	<button id = "execute"class="button1">Execute</button>
 	<button id = "sound" class="button2">Sound</button>
 	<button id = "option3" class="button3">Random</button>
@@ -106,12 +131,12 @@
 
 
 
-
-	<!-- <script src="option1.js"></script>
-	<script src="sound.js"></script> -->
+	<script src="controller.js"></script>
+	<script src="option1.js"></script>
+	<script src="sound.js"></script>
 	<script src="option3.js"></script>
 	<!-- <script src="option2.js"></script> -->
-	<script src="sound2.js"></script>
+	<!-- <script src="sound2.js"></script> -->
 	<script src="explodingParticle.js"></script>
 
 
