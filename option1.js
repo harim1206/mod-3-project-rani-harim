@@ -1,4 +1,24 @@
 
+fetch('http://localhost:3000/api/v1/drawings')
+  .then((res) => res.json())
+  .then((json) => {
+    // debugger
+
+
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // All of the paths
@@ -24,9 +44,6 @@ function setup(position) {
 	current = createVector(0,0)
 	previous = createVector(0,0)
 	frameRate(60)
-
-
-	console.log('setup loaded')
 }
 
 
@@ -71,12 +88,38 @@ function draw() {
 
 let playButton = document.getElementById('play-button')
 let newButton = document.getElementById('new-button')
+let saveButton = document.getElementById('save-button')
 
 
-// NOTE: EXECUTE
+// NOTE: BUTTONS
 playButton.addEventListener('click', execute)
 newButton.addEventListener('click',function(){
 	window.location.reload();
+})
+saveButton.addEventListener('click',function(){
+  let pathsJSON = pathsToJSON(paths)
+
+  let postData = {
+    name: "Harim",
+    title: "Mango",
+    data: pathsJSON
+  }
+
+	console.log(`pathsJSON: ${pathsJSON}`)
+	debugger
+  fetch('http://localhost:3000/api/v1/drawings', {
+    method: 'POST',
+    body: JSON.stringify(postData),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(res => {
+		res.json()
+
+	}).then(json =>{
+		debugger
+	})
+
 })
 
 // Particle explosion function
@@ -127,6 +170,47 @@ function explode(x, y) {
 		explodingParticles.push(explodingParticle)
 	}
 }
+
+// HELPER FUNCTION: takes in a paths array, returns
+// a json 'stringifiable' object
+
+function pathsToJSON(paths){
+  // paths: [P1,P2,P3,...]
+  // Path1.particles: [p1,p2,p3,...]
+  // p1.position: Vector(x,y)
+  // p1.isNote: T/F
+
+  let pathsArray = []
+
+  // Iterate through each path
+  paths.forEach(function(path){
+
+    let pathData = []
+    // Iterate through each particles array
+    path.particles.forEach(function(particle){
+      let particleData = []
+      particleData.push(
+        particle.position.x,
+        particle.position.y,
+        particle.isNote
+      )
+      pathData.push(particleData)
+
+    })
+    pathsArray.push(pathData)
+
+  })
+
+
+  // Return:
+  // [P1,P2,P3]
+  // P1: [[x1,y1,Note1],[x2,y2,Note2]]
+  return pathsArray
+
+}
+
+
+
 
 
 
