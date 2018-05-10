@@ -8,7 +8,7 @@ let notes = [130.813, 138.591, 146.832, 155.563, 164.814,
 554.365, 587.33, 622.254, 659.255, 698.456,
 739.989, 783.991, 830.609, 880, 932.328, 987.767]
 
-majorScaleC3 = [130.81, 146.83, 164.81, 174.61, 196,
+let majorScaleC3 = [130.81, 146.83, 164.81, 174.61, 196,
 220, 246.94, 261.63, 293.66, 329.63,
 349.23, 392, 440, 493.88, 523.25,
 587.33, 659.25, 698.46, 783.99, 880, 987.77]
@@ -49,12 +49,12 @@ function createSound(note, waveType){
 }
 
 
-let defaultFrequency = 400
-let testSound = createSound(defaultFrequency, 'triangle')
-
-let soundButton = document.getElementById('sound')
-soundButton.addEventListener('click', function(){
-  // debugger
-  testSound.env.play()
-
-})
+// let defaultFrequency = 400
+// let testSound = createSound(defaultFrequency, 'triangle')
+//
+// let soundButton = document.getElementById('sound')
+// soundButton.addEventListener('click', function(){
+//   // debugger
+//   testSound.env.play()
+//
+// })

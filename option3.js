@@ -12,10 +12,19 @@ let next = 0
 // Current and previous mouse positions
 let current
 let previous
+let counter = 0
+
 
 //colors
 var r, g, b;
 
+function preload() {
+	song = loadSound('assets/disco1.mp3')
+	tango = loadSound('assets/Tango.mp3')
+	tech = loadSound('assets/tech1.mp3')
+	carribean = loadSound('assets/carribean.mp3')
+
+}
 
 function setup(position) {
 	let canvas = createCanvas(1500, 1000)
@@ -91,12 +100,11 @@ function draw() {
 
 
 
+let executeButton = document.getElementById('execute')
+executeButton.addEventListener('click', execute)
 
-let option2Button = document.getElementById('option2')
-option2button.addEventListener('click', execute2)
-console.log("CLicked")
 // Particle explosion function
-function execute2(){
+function execute(){
 	console.log("clicked!")
 	// debugger
 
@@ -107,57 +115,62 @@ function execute2(){
 
 
 
+
 ///octave
-					if (paths[i].particles[0].position.y < 330) {
-						console.log("Here")
-					if (paths[i].particles[0].position.x < 146) {
-					  wave.freq(261.63)
-					} else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
-					  wave.freq(293.66)
-					} else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
-					  wave.freq(311.13)
-					} else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
-					  wave.freq(329.63)
-					} else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
-					  wave.freq(392.00)
-					} else {
-					  wave.freq(440)
-					  }
-					} else if (paths[i].particles[0].position.y < 660 && paths[i].particles[0].position.y >= 330) {
-					  console.log(2)
-					  if (paths[i].particles[0].position.x < 146) {
-					    wave.freq(130.81)
-					  } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
-					    wave.freq(146.83)
-					  } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
-					    wave.freq(155.86)
-					  } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
-					    wave.freq(164.81)
-					  } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
-					    wave.freq(196.00)
-					  } else {
-					    wave.freq(220)
-					    }
-					} else {
-					  console.log(3)
-					    if (paths[i].particles[0].position.y > 660 ) {
-					      wave.freq(523.25)
-					    } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
-					      wave.freq(587.33)
-					    } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
-					      wave.freq(622.25)
-					    } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
-					      wave.freq(659.25)
-					    } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
-					      wave.freq(783.99)
-					    } else {
-					      wave.freq(880)
-					      }
-					}
+					// if (paths[i].particles[0].position.y < 330) {
+					// if (paths[i].particles[0].position.x < 146) {
+					//   wave.freq(261.63)
+					// } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
+					//   wave.freq(293.66)
+					// } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
+					//   wave.freq(311.13)
+					// } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
+					//   wave.freq(329.63)
+					// } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
+					//   wave.freq(392.00)
+					// } else {
+					//   wave.freq(440)
+					//   }
+					// } else if (paths[i].particles[0].position.y < 660 && paths[i].particles[0].position.y >= 330) {
+					//   console.log(2)
+					//   if (paths[i].particles[0].position.x < 146) {
+					//     wave.freq(130.81)
+					//   } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
+					//     wave.freq(146.83)
+					//   } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
+					//     wave.freq(155.86)
+					//   } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
+					//     wave.freq(164.81)
+					//   } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
+					//     wave.freq(196.00)
+					//   } else {
+					//     wave.freq(220)
+					//     }
+					// } else {
+					//   console.log(3)
+					//     if (paths[i].particles[0].position.y > 660 ) {
+					//       wave.freq(523.25)
+					//     } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
+					//       wave.freq(587.33)
+					//     } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
+					//       wave.freq(622.25)
+					//     } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
+					//       wave.freq(659.25)
+					//     } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
+					//       wave.freq(783.99)
+					//     } else {
+					//       wave.freq(880)
+					//       }
+					// }
 
 					// wave.freq(paths[i].particles[0].position.x)
-					// wave.freq(paths[i].particles[0].position.x+100)
-          env.play()
+					wave.freq(paths[i].particles[0].position.x+100)
+          // env.play()
+					discosound(counter)
+					counter++
+					if(counter === 6){
+						counter = 0
+					}
 
 					explode(paths[i].particles[0].position.x, paths[i].particles[0].position.y)
 
@@ -169,7 +182,7 @@ function execute2(){
  				 wave.freq(defaultFrequency)
  				 window.clearInterval(removeInterval)
  			 }
- 	 }, random(300,500))
+ 	 }, random(150, 500))
   }
 
 
@@ -187,9 +200,33 @@ explode = (x, y) => {
 
 
 
+function discosound(counter) {
+  if (counter === 1) {
+		carribean.play()
+		console.log(1)
+	}
+	else if (counter === 2) {
+		carribean.play()
+		console.log(2)
 
-//
-//
+	} else  if (counter === 3) {
+		carribean.play()
+		console.log(3)
+
+	} else  if (counter === 4){
+		carribean.play()
+		console.log(4)
+
+	} else  if (counter === 5){
+		carribean.play()
+		console.log(5)
+
+	} else {
+		console.log("Here")
+		carribean.play()
+	}
+}
+
 // MOUSE EVENTS
 //
 //

@@ -85,7 +85,7 @@ function execute(){
 						let thisNote = yPositionToNote(paths[i].particles[0].position.y)
 						console.log(`thisNote`, thisNote)
 
-						let thisParticleSound = createSound(thisNote, 'square')
+						let thisParticleSound = createSound(thisNote, 'sine')
 
 						thisParticleSound.env.play()
 
