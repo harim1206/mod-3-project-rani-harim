@@ -1,5 +1,5 @@
-// let playButton = document.getElementById('playButton')
-// let pauseButton = document.getElementById('pauseButton')
+
+
 
 // All of the paths
 // Each path is a line formed between mouse press and mouse release
@@ -16,6 +16,7 @@ let previous
 // exploding particles array
 let explodingParticles = []
 
+
 function setup(position) {
 	let canvas = createCanvas(1000, 450)
 	canvas.parent('sketch-holder');
@@ -24,12 +25,8 @@ function setup(position) {
 	previous = createVector(0,0)
 	frameRate(60)
 
-	// pauseButton.style.display = 'none'
-
 
 	console.log('setup loaded')
-
-
 }
 
 
@@ -46,7 +43,6 @@ function draw() {
 		// add a particle with current position to current path
 		// NOTE: CREATING A NEW PARTICLE
 		paths[paths.length-1].add(current)
-		// console.log(paths)
 
 		// schedule next circle
 		next = millis() + 80;
@@ -69,42 +65,31 @@ function draw() {
 		}
 	})
 
-
 }
 
 
 
-
+let playButton = document.getElementById('play-button')
+let newButton = document.getElementById('new-button')
 
 
 // NOTE: EXECUTE
-// playButton.addEventListener('click', execute)
-// pauseButton.addEventListener('click', function(){
-// 	playButton.style.display = 'block'
-// 	pauseButton.style.display = 'none'
-// })
+playButton.addEventListener('click', execute)
+newButton.addEventListener('click',function(){
+	window.location.reload();
+})
 
 // Particle explosion function
 function execute(){
-	playButton.style.display = 'none'
-	pauseButton.style.display = 'block'
-	console.log("clicked!")
-	// debugger
-
 	for(let i = 0; i < paths.length; i++){
 
 		let removeInterval = setInterval(()=>{
 				if(paths[i].particles.length > 0){
-					// debugger
-
 					// NOTE: Create a new sound object with the current particle's location as the frequency.
-					// debugger
 					if(paths[i].particles[0].isNote){
 						let thisNote = yPositionToNote(paths[i].particles[0].position.y)
 						console.log(`thisNote`, thisNote)
-
 						let thisParticleSound = createSound(thisNote, 'sine')
-
 						thisParticleSound.env.play()
 					}
 
@@ -113,19 +98,11 @@ function execute(){
 					paths[i].particles.splice(0,1)
 
 				}else{
-
-
 					window.clearInterval(removeInterval)
 				}
 		// NOTE: Particle Trigger Speed
 		}, 200)
-
-
 	}
-
-
-
-
 }
 
 // HELPER FUNCTION: CONVERT Y POSITION TO NOTE SCALE
@@ -135,7 +112,6 @@ function yPositionToNote(yPosition){
 
 // HELPER FUNCTION: FIND CLOSEST NOTE
 function findClosestNote(notesArray, input){
-	// debugger
 	let closest = notesArray.reduce(function(prev, curr) {
 	  return (Math.abs(curr - input) < Math.abs(prev - input) ? curr : prev);
 	})
@@ -205,7 +181,6 @@ Path.prototype.add = function(position){
 	}else{
 		this.particles.push(new Particle(position, this.hue, false))
 	}
-	// debugger
 }
 
 // Path.prototype.update = function(){
