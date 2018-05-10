@@ -164,7 +164,7 @@ function execute(){
 					window.clearInterval(removeInterval)
 				}
 		// NOTE: Particle Trigger Speed
-		}, 200)
+  }, 100)
 	}
 }
 //
@@ -392,7 +392,7 @@ Particle.prototype.noteDisplay = function(other){
 	// fill(255, 128, 128)
 	stroke(r, g, b);
 	fill(r, g, b, 127);
-	ellipse(this.position.x,this.position.y, 8, 8)
+	ellipse(this.position.x,this.position.y, 6, 6)
 
 	// ellipse(this.position.x,this.position.y, 5, 5)
 
