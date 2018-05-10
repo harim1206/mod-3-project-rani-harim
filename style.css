@@ -10,7 +10,7 @@ canvas {
 h1 {
   font-family: 'Roboto';
   font-weight: lighter;
-  font-size: 60px;
+  font-size: 65px;
   color: orange;
   margin-top: 1%;
   margin-bottom: 1%;
@@ -33,21 +33,27 @@ h1 {
   color: orange;
 }
 
+#yo {
+  color: blue;
+}
 
+.fab {
+  color: orange;
+}
 
+.card-content {
+  margin-left: 10x
+  margin-top: 10x
+}
+.card {
+  margin-left: 10x
+  margin-top: 10x
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+.card-title {
+  margin-left: 10x
+  margin-top: 10x
+}
 
 
 

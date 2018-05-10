@@ -30,21 +30,17 @@ function playEnv(){
   console.log(`wave`, wave)
 
   env.play()
-
-
-
-
 }
-
-let soundButton = document.getElementById('sound')
-soundButton.addEventListener('click', playEnv)
-
-
-
-
-console.log('sound.js loaded')
+//
+// let soundButton = document.getElementById('sound')
+// soundButton.addEventListener('click', playEnv)
 //
 //
+//
+//
+// console.log('sound.js loaded')
+// //
+// //
 // let env = new p5.Env()
 // env.setADSR(attackTime, decayTime, susPercent, releaseTime)
 // env.setRange(attackLevel, releaseLevel)

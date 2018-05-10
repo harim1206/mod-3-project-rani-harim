@@ -34,7 +34,6 @@ function runOptionTwoJS(){
 	  g = random(255);
 	  b = random(255);
 
-
 	}
 
 
@@ -92,9 +91,9 @@ function runOptionTwoJS(){
 
 
 
-	let option2Button = document.getElementById('option2')
-	option2button.addEventListener('click', execute2)
-	console.log("CLicked")
+	let playButton = document.getElementById('play-button')
+	playButton.addEventListener('click', execute2)
+	console.log("Clicked")
 	// Particle explosion function
 	function execute2(){
 		console.log("clicked!")

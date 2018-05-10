@@ -1,4 +1,3 @@
-function runOptionThreeJS(){
 	// All of the paths
 	// Each path is a line formed between mouse press and mouse release
 	// Each path contains an array of particles
@@ -18,7 +17,11 @@ function runOptionThreeJS(){
 	//colors
 	var r, g, b;
 
-	function preload() {
+   function works() {
+		 console.log("Hello this is function 1")
+	 }
+
+	function preload(works) {
 		song = loadSound('assets/disco1.mp3')
 		tango = loadSound('assets/Tango.mp3')
 		tech = loadSound('assets/tech1.mp3')
@@ -27,7 +30,7 @@ function runOptionThreeJS(){
 	}
 
 	function setup(position) {
-		let canvas = createCanvas(1500, 1000)
+		let canvas = createCanvas(1000, 450)
 		canvas.parent('sketch-holder');
 
 		current = createVector(0,0)
@@ -98,14 +101,22 @@ function runOptionThreeJS(){
 
 
 
+	let playButton = document.getElementById('play-button')
+	let newButton = document.getElementById('new-button')
 
 
-	let executeButton = document.getElementById('execute')
-	executeButton.addEventListener('click', execute)
+	// NOTE: EXECUTE
+	playButton.addEventListener('click', execute)
+	newButton.addEventListener('click',function(){
+		window.location.reload();
+	})
 
 	// Particle explosion function
 	function execute(){
 		console.log("clicked!")
+
+		console.log("3")
+
 		// debugger
 
 			for(let i = 0; i < paths.length; i++){
@@ -117,60 +128,60 @@ function runOptionThreeJS(){
 
 
 	///octave
-						// if (paths[i].particles[0].position.y < 330) {
-						// if (paths[i].particles[0].position.x < 146) {
-						//   wave.freq(261.63)
-						// } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
-						//   wave.freq(293.66)
-						// } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
-						//   wave.freq(311.13)
-						// } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
-						//   wave.freq(329.63)
-						// } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
-						//   wave.freq(392.00)
-						// } else {
-						//   wave.freq(440)
-						//   }
-						// } else if (paths[i].particles[0].position.y < 660 && paths[i].particles[0].position.y >= 330) {
-						//   console.log(2)
-						//   if (paths[i].particles[0].position.x < 146) {
-						//     wave.freq(130.81)
-						//   } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
-						//     wave.freq(146.83)
-						//   } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
-						//     wave.freq(155.86)
-						//   } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
-						//     wave.freq(164.81)
-						//   } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
-						//     wave.freq(196.00)
-						//   } else {
-						//     wave.freq(220)
-						//     }
-						// } else {
-						//   console.log(3)
-						//     if (paths[i].particles[0].position.y > 660 ) {
-						//       wave.freq(523.25)
-						//     } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
-						//       wave.freq(587.33)
-						//     } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
-						//       wave.freq(622.25)
-						//     } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
-						//       wave.freq(659.25)
-						//     } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
-						//       wave.freq(783.99)
-						//     } else {
-						//       wave.freq(880)
-						//       }
-						// }
+						if (paths[i].particles[0].position.y < 330) {
+						if (paths[i].particles[0].position.x < 146) {
+						  wave.freq(261.63)
+						} else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
+						  wave.freq(293.66)
+						} else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
+						  wave.freq(311.13)
+						} else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
+						  wave.freq(329.63)
+						} else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
+						  wave.freq(392.00)
+						} else {
+						  wave.freq(440)
+						  }
+						} else if (paths[i].particles[0].position.y < 660 && paths[i].particles[0].position.y >= 330) {
+						  console.log(2)
+						  if (paths[i].particles[0].position.x < 146) {
+						    wave.freq(130.81)
+						  } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
+						    wave.freq(146.83)
+						  } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
+						    wave.freq(155.86)
+						  } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
+						    wave.freq(164.81)
+						  } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
+						    wave.freq(196.00)
+						  } else {
+						    wave.freq(220)
+						    }
+						} else {
+						  console.log(3)
+						    if (paths[i].particles[0].position.y > 660 ) {
+						      wave.freq(523.25)
+						    } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
+						      wave.freq(587.33)
+						    } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
+						      wave.freq(622.25)
+						    } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
+						      wave.freq(659.25)
+						    } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
+						      wave.freq(783.99)
+						    } else {
+						      wave.freq(880)
+						      }
+						}
 
 						// wave.freq(paths[i].particles[0].position.x)
-						wave.freq(paths[i].particles[0].position.x+100)
+						// wave.freq(paths[i].particles[0].position.x+100)
 	          // env.play()
-						discosound(counter)
-						counter++
-						if(counter === 6){
-							counter = 0
-						}
+						// discosound(counter)
+						// counter++
+						// if(counter === 6){
+						// 	counter = 0
+						// }
 
 						explode(paths[i].particles[0].position.x, paths[i].particles[0].position.y)
 
@@ -179,7 +190,7 @@ function runOptionThreeJS(){
 	 				 paths[i].particles.splice(0,1)
 
 	 			 }else{
-	 				 wave.freq(defaultFrequency)
+	 				 // wave.freq(defaultFrequency)
 	 				 window.clearInterval(removeInterval)
 	 			 }
 	 	 }, random(150, 500))
@@ -322,5 +333,3 @@ function runOptionThreeJS(){
 		}
 
 	}
-
-}
