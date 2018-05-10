@@ -1,4 +1,9 @@
 
+
+
+let playButton = document.getElementById('playButton')
+let pauseButton = document.getElementById('pauseButton')
+
 // All of the paths
 // Each path is a line formed between mouse press and mouse release
 // Each path contains an array of particles
@@ -11,6 +16,14 @@ let next = 0
 let current
 let previous
 
+// exploding particles array
+let explodingParticles = []
+
+
+// function preload() {
+//   let song = loadSound('assets/Disco.mp3');
+// }
+//
 
 function setup(position) {
 	let canvas = createCanvas(800, 400)
@@ -19,6 +32,8 @@ function setup(position) {
 	current = createVector(0,0)
 	previous = createVector(0,0)
 	frameRate(60)
+
+	pauseButton.style.display = 'none'
 
 
 	console.log('setup loaded')
@@ -55,6 +70,14 @@ function draw() {
 		paths[i].display();
 	}
 
+	explodingParticles.forEach(particle => {
+		particle.show()
+		particle.update()
+		if(particle.a < 0){
+			explodingParticles.splice(explodingParticles.indexOf(particle), 1)
+		}
+	})
+
 
 }
 
@@ -64,19 +87,22 @@ function draw() {
 
 
 // NOTE: EXECUTE
-let executeButton = document.getElementById('execute')
-executeButton.addEventListener('click', execute)
+playButton.addEventListener('click', execute)
+pauseButton.addEventListener('click', function(){
+	playButton.style.display = 'block'
+	pauseButton.style.display = 'none'
+})
 
 // Particle explosion function
 function execute(){
+	playButton.style.display = 'none'
+	pauseButton.style.display = 'block'
 	console.log("clicked!")
 	// debugger
 
 	for(let i = 0; i < paths.length; i++){
 
 		let removeInterval = setInterval(()=>{
-
-
 				if(paths[i].particles.length > 0){
 
 					// NOTE: Create a new sound object with the current particle's location as the frequency.
@@ -85,25 +111,24 @@ function execute(){
 						let thisNote = yPositionToNote(paths[i].particles[0].position.y)
 						console.log(`thisNote`, thisNote)
 
-						let thisParticleSound = createSound(thisNote, 'square')
+						let thisParticleSound = createSound(thisNote, 'sine')
 
 						thisParticleSound.env.play()
-
-
 					}
 
-
-
+					// EXPLOSION EFFECT ON Particle
+					explode(paths[i].particles[0].position.x, paths[i].particles[0].position.y)
 					paths[i].particles.splice(0,1)
 
-
-
 				}else{
-					// wave.freq(defaultFrequency)
+
+
 					window.clearInterval(removeInterval)
 				}
 		// NOTE: Particle Trigger Speed
 		}, 200)
+
+
 	}
 
 
@@ -125,6 +150,16 @@ function findClosestNote(notesArray, input){
 
 	return closest
 }
+
+// HELPER FUNCTION
+function explode(x, y) {
+	let numParticles = random(2, 10)
+	for(let i = 0; i <= numParticles; i++){
+		let explodingParticle = new ExplodingParticle(x, y)
+		explodingParticles.push(explodingParticle)
+	}
+}
+
 
 
 
@@ -225,7 +260,7 @@ function Particle(position, hue, isNote){
 Particle.prototype.display = function(other){
 	stroke(100)
 	fill(175, 175, 175)
-	ellipse(this.position.x,this.position.y, 5, 5)
+	ellipse(this.position.x,this.position.y, 2, 2)
 
 	if (other) {
 		line(this.position.x, this.position.y, other.position.x, other.position.y);
@@ -237,7 +272,7 @@ Particle.prototype.display = function(other){
 Particle.prototype.noteDisplay = function(other){
 	stroke(100)
 	fill(255, 128, 128)
-	ellipse(this.position.x,this.position.y, 8, 8)
+	ellipse(this.position.x,this.position.y, 5, 5)
 
 	if (other) {
 		line(this.position.x, this.position.y, other.position.x, other.position.y);

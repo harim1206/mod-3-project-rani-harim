@@ -1,0 +1,36 @@
+body {
+  margin:0;
+  padding:0;
+  overflow: hidden;
+
+
+
+}
+
+#sketch-holder {
+  margin:auto;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-play{
+  margin-top: 3%;
+  margin-left: 50%;
+  color: pink;
+}
+
+.fa-pause{
+  margin-top: 3%;
+  margin-left: 50%;
+  color: pink;
+}
+
+#drawing-title{
+  margin-left: 45%;
+}
+
+#submit-button{
+  margin-left: 6%;
+}

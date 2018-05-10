@@ -7,46 +7,44 @@
 
 	<title>project</title>
 
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 	<script src="libraries/p5.js"></script>
 	<script src="libraries/p5.dom.js"></script>
 	<script src="libraries/p5.sound.js"></script>
 
-	<style>
-		body {
-			margin:0;
-			padding:0;
-			overflow: hidden;
-		}
-		canvas {
-			margin:auto;
-		}
 
-   .button1 {
-		 position: fixed;
-     bottom: 10px;
-     left: 45%;
-   }
 
-	 .button2 {
-		position: fixed;
-		 bottom: 10px;
-		 left: 55%;
-	 }
 
-	</style>
+
 </head>
 <body>
-	<div id="sketch-holder">
-    <!-- Our sketch will go here! -->
-  </div>
-	<button id = "execute"class="button1">Execute</button>
-	<button id = "sound" class="button2">sound</button>
+	<div id="canvas-wrap-div">
+		<div id="sketch-holder">
+	    <!-- Our sketch will go here! -->
+	  </div>
+
+		<div id="play-pause-button">
+			<i class="fas fa-play" id="playButton"></i>
+			<i class="fas fa-pause" id="pauseButton"></i>
+		</div>
+
+		<div id="drawing-title">
+			<form id="drawing-title-form">
+			  <input type="text" name="title" placeholder="title"><br>
+			  <input type="submit" value="Save" id="submit-button">
+			</form>
+		</div>
 
 
-	<!-- <script src="option1.js"></script>
-	<script src="sound.js"></script> -->
-	<<script src="option2.js"></script>
-	<script src="sound2.js"></script>
+		<button id = "sound" class="button2">sound</button>
+	</div>
+
+
+	<script src="option1.js"></script>
+	<script src="sound.js"></script>
+	<!-- <<script src="option2.js"></script>
+	<script src="sound2.js"></script> -->
 	<script src="explodingParticle.js"></script>
 
 

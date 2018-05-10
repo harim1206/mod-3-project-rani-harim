@@ -20,6 +20,13 @@ class Sound{
     this.wave = wave
     this.delay = delay
   }
+
+  setADSR(attack, decay, sustain, release){
+
+
+    this.env.setADSR(attack, decay, sustain, release)
+  }
+
 }
 
 var attackTime = 0
@@ -50,7 +57,8 @@ function createSound(note, waveType){
 
 
 let defaultFrequency = 400
-let testSound = createSound(defaultFrequency, 'triangle')
+let testSound = createSound(defaultFrequency, 'sine')
+// testSound.setADSR(1, 1, 0.5, 3)
 
 let soundButton = document.getElementById('sound')
 soundButton.addEventListener('click', function(){

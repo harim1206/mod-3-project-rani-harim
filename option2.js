@@ -107,53 +107,6 @@ function execute(){
 
 
 
-///octave
-					// if (paths[i].particles[0].position.y < 330) {
-					// if (paths[i].particles[0].position.x < 146) {
-					//   wave.freq(261.63)
-					// } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
-					//   wave.freq(293.66)
-					// } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
-					//   wave.freq(311.13)
-					// } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
-					//   wave.freq(329.63)
-					// } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
-					//   wave.freq(392.00)
-					// } else {
-					//   wave.freq(440)
-					//   }
-					// } else if (paths[i].particles[0].position.y < 660 && paths[i].particles[0].position.y >= 330) {
-					//   console.log(2)
-					//   if (paths[i].particles[0].position.x < 146) {
-					//     wave.freq(130.81)
-					//   } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
-					//     wave.freq(146.83)
-					//   } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
-					//     wave.freq(155.86)
-					//   } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
-					//     wave.freq(164.81)
-					//   } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
-					//     wave.freq(196.00)
-					//   } else {
-					//     wave.freq(220)
-					//     }
-					// } else {
-					//   console.log(3)
-					//     if (paths[i].particles[0].position.y > 660 ) {
-					//       wave.freq(523.25)
-					//     } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
-					//       wave.freq(587.33)
-					//     } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
-					//       wave.freq(622.25)
-					//     } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
-					//       wave.freq(659.25)
-					//     } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
-					//       wave.freq(783.99)
-					//     } else {
-					//       wave.freq(880)
-					//       }
-					// }
-
 					// wave.freq(paths[i].particles[0].position.x)
 					wave.freq(paths[i].particles[0].position.x+100)
           env.play()
@@ -226,6 +179,7 @@ function mouseReleased(){
 // A Path is an array of particles
 function Path(){
 	this.particles = [];
+
 	this.hue = random(r. g, b);
   r = random(255);
   g = random(255);
@@ -293,3 +247,54 @@ Particle.prototype.display = function(other){
 	}
 
 }
+
+
+
+
+
+///octave
+// if (paths[i].particles[0].position.y < 330) {
+// if (paths[i].particles[0].position.x < 146) {
+//   wave.freq(261.63)
+// } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
+//   wave.freq(293.66)
+// } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
+//   wave.freq(311.13)
+// } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
+//   wave.freq(329.63)
+// } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
+//   wave.freq(392.00)
+// } else {
+//   wave.freq(440)
+//   }
+// } else if (paths[i].particles[0].position.y < 660 && paths[i].particles[0].position.y >= 330) {
+//   console.log(2)
+//   if (paths[i].particles[0].position.x < 146) {
+//     wave.freq(130.81)
+//   } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
+//     wave.freq(146.83)
+//   } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
+//     wave.freq(155.86)
+//   } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
+//     wave.freq(164.81)
+//   } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
+//     wave.freq(196.00)
+//   } else {
+//     wave.freq(220)
+//     }
+// } else {
+//   console.log(3)
+//     if (paths[i].particles[0].position.y > 660 ) {
+//       wave.freq(523.25)
+//     } else if (paths[i].particles[0].position.x > 146 && paths[i].particles[0].position.x < 293) {
+//       wave.freq(587.33)
+//     } else if (paths[i].particles[0].position.x > 293 && paths[i].particles[0].position.x < 440) {
+//       wave.freq(622.25)
+//     } else if (paths[i].particles[0].position.x > 440 && paths[i].particles[0].position.x < 586) {
+//       wave.freq(659.25)
+//     } else if (paths[i].particles[0].position.x > 586 && paths[i].particles[0].position.x < 733) {
+//       wave.freq(783.99)
+//     } else {
+//       wave.freq(880)
+//       }
+// }
