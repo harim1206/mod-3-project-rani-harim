@@ -7,111 +7,138 @@ canvas {
   margin:auto;
 }
 
-.button1 {
- position: fixed;
- bottom: 10px;
- left: 41%;
-font-family: 'Source Code Pro';
-font-size: 14px;
-font-weight: bolder;
-background-color: rgba(6, 229, 20, 1);
-border: none;
-border-radius: 10px;
-}
-
-.button2 {
-position: fixed;
- bottom: 10px;
- left: 47%;
- font-size: 14px;
- font-family: 'Source Code Pro';
- font-weight: bolder;
- background-color: rgba(6, 229, 20, 1);
- border: none;
- border-radius: 20px;
-}
-
-.button3 {
-position: fixed;
- bottom: 10px;
- left: 52%;
- font-size: 14px;
- font-family: 'Source Code Pro';
- font-weight: bolder;
- background-color: rgba(6, 229, 20, 1);
- border: none;
- border-radius: 20px;
-}
-
-.button4 {
-position: fixed;
- bottom: 10px;
- left: 58%;
- font-size: 14px;
- font-family: 'Source Code Pro';
- font-weight: bolder;
- background-color: rgba(6, 229, 20, 1);
- border: none;
- border-radius: 20px;
-}
-
-.button5 {
-position: fixed;
- bottom: 10px;
- left: 66%;
- font-size: 14px;
- font-family: 'Source Code Pro';
- font-weight: bolder;
- background-color: rgba(6, 229, 20, 1);
- border: none;
- border-radius: 20px;
-}
-
 h1 {
-position: fixed;
-font-family: 'Roboto';
-font-weight: lighter;
-font-size: 60px;
-left: 47%;
+  font-family: 'Roboto';
+  font-weight: lighter;
+  font-size: 60px;
+  color: orange;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
-
-
-
-/* HARIM */
-body {
-  margin:0;
-  padding:0;
-  overflow: hidden;
-
-
-
-}
 
 #sketch-holder {
   margin:auto;
-  margin-top: 50px;
+  margin-top: 0%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+#buttons-wrap-div{
+  margin-top: 1%;
+}
+
+.far{
+  color: orange;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 .fa-play{
-  margin-top: 3%;
-  margin-left: 50%;
-  color: pink;
+margin-top: 3%;
+margin-left: 50%;
+color: pink;
 }
 
 .fa-pause{
-  margin-top: 3%;
-  margin-left: 50%;
-  color: pink;
+margin-top: 3%;
+margin-left: 50%;
+color: pink;
 }
 
 #drawing-title{
-  margin-left: 45%;
+margin-left: 45%;
 }
 
 #submit-button{
-  margin-left: 6%;
+margin-left: 6%;
 }
+
+
+
+*/
+
+
+
+
+
+/*
+.button1 {
+  position: fixed;
+  bottom: 10px;
+  left: 41%;
+  font-family: 'Source Code Pro';
+  font-size: 14px;
+  font-weight: bolder;
+  background-color: rgba(6, 229, 20, 1);
+  border: none;
+  border-radius: 10px;
+}
+
+.button2 {
+  position: fixed;
+  bottom: 10px;
+  left: 47%;
+  font-size: 14px;
+  font-family: 'Source Code Pro';
+  font-weight: bolder;
+  background-color: rgba(6, 229, 20, 1);
+  border: none;
+  border-radius: 20px;
+}
+
+.button3 {
+  position: fixed;
+  bottom: 10px;
+  left: 52%;
+  font-size: 14px;
+  font-family: 'Source Code Pro';
+  font-weight: bolder;
+  background-color: rgba(6, 229, 20, 1);
+  border: none;
+  border-radius: 20px;
+}
+
+.button4 {
+  position: fixed;
+  bottom: 10px;
+  left: 58%;
+  font-size: 14px;
+  font-family: 'Source Code Pro';
+  font-weight: bolder;
+  background-color: rgba(6, 229, 20, 1);
+  border: none;
+  border-radius: 20px;
+}
+
+.button5 {
+  position: fixed;
+  bottom: 10px;
+  left: 66%;
+  font-size: 14px;
+  font-family: 'Source Code Pro';
+  font-weight: bolder;
+  background-color: rgba(6, 229, 20, 1);
+  border: none;
+  border-radius: 20px;
+  } */

@@ -5,7 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>project</title>
+	<title>Mu-Z-Art</title>
+
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
@@ -13,133 +14,54 @@
 	<script src="libraries/p5.js"></script>
 	<script src="libraries/p5.dom.js"></script>
 	<script src="libraries/p5.sound.js"></script>
-
-	<style>
-		body {
-			margin:0;
-			padding:0;
-			overflow: hidden;
-		}
-		canvas {
-			margin:auto;
-		}
-
-   .button1 {
-		 position: fixed;
-     bottom: 10px;
-     left: 41%;
-  font-family: 'Source Code Pro';
-	font-size: 14px;
-  font-weight: bolder;
-  background-color: rgba(6, 229, 20, 1);
-  border: none;
-  border-radius: 10px;
- }
-
-	 .button2 {
-		position: fixed;
-		 bottom: 10px;
-		 left: 47%;
-		 font-size: 14px;
-		 font-family: 'Source Code Pro';
-		 font-weight: bolder;
-		 background-color: rgba(6, 229, 20, 1);
-		 border: none;
-		 border-radius: 20px;
-	 }
-
-	 .button3 {
-		position: fixed;
-		 bottom: 10px;
-		 left: 52%;
-		 font-size: 14px;
-		 font-family: 'Source Code Pro';
-		 font-weight: bolder;
-		 background-color: rgba(6, 229, 20, 1);
-		 border: none;
-		 border-radius: 20px;
-	 }
-
-	 .button4 {
-		position: fixed;
-		 bottom: 10px;
-		 left: 58%;
-		 font-size: 14px;
-		 font-family: 'Source Code Pro';
-		 font-weight: bolder;
-		 background-color: rgba(6, 229, 20, 1);
-		 border: none;
-		 border-radius: 20px;
-	 }
-
-	 .button5 {
-		position: fixed;
-		 bottom: 10px;
-		 left: 66%;
-		 font-size: 14px;
-		 font-family: 'Source Code Pro';
-		 font-weight: bolder;
-		 background-color: rgba(6, 229, 20, 1);
-		 border: none;
-		 border-radius: 20px;
-	 }
-
-	 h1 {
-		position: fixed;
-	 	font-family: 'Roboto';
-		font-weight: lighter;
-		font-size: 60px;
-		left: 47%;
-	 }
-
-	</style>
 </head>
+
 <body>
-	<button id="optionOne">Option1</button>
-	<button id="optionTwo">Option2</button>
 
 
+	<h1 align="center"> Mu-z-art</h1>
 
 
-
-
-
-
-	<h1> Mu-z-art</h1>
 	<div id="canvas-wrap-div">
 		<div id="sketch-holder">
 	    <!-- Our sketch will go here! -->
 	  </div>
-
-		<div id="play-pause-button">
-			<i class="fas fa-play" id="playButton"></i>
-			<i class="fas fa-pause" id="pauseButton"></i>
-		</div>
-
-		<div id="drawing-title">
-			<form id="drawing-title-form">
-			  <input type="text" name="title" placeholder="title"><br>
-			  <input type="submit" value="Save" id="submit-button">
-			</form>
-		</div>
-	<button id = "execute"class="button1">Execute</button>
-	<button id = "sound" class="button2">Sound</button>
-	<button id = "option3" class="button3">Random</button>
-	<button id = "option2" class="button4">Major Blues</button>
-	<button id = "save" class="button5">Save Drawing</button>
+	</div>
+	<div id="buttons-wrap-div" align="center">
+		<i class="far fa-play-circle fa-2x" id="play-button"></i>
+		<i class="far fa-plus-square fa-2x" id="pause-button"></i>
+	</div>
 
 
 
-
-	<script src="controller.js"></script>
 	<script src="option1.js"></script>
 	<script src="sound.js"></script>
-	<script src="option3.js"></script>
+	<!-- <script src="option3.js"></script> -->
 	<!-- <script src="option2.js"></script> -->
 	<!-- <script src="sound2.js"></script> -->
 	<script src="explodingParticle.js"></script>
 
-
-
 </body>
 </html>
+
+
+
+
+
+
+<!-- <div id="play-pause-button">
+<i class="fas fa-play" id="playButton"></i>
+<i class="fas fa-pause" id="pauseButton"></i>
+</div>
+
+<div id="drawing-title">
+<form id="drawing-title-form">
+<input type="text" name="title" placeholder="title"><br>
+<input type="submit" value="Save" id="submit-button">
+</form>
+</div> -->
+<!-- <button id = "execute"class="button1">Execute</button>
+<button id = "sound" class="button2">Sound</button>
+<button id = "option3" class="button3">Random</button>
+<button id = "option2" class="button4">Major Blues</button>
+<button id = "save" class="button5">Save Drawing</button> -->
