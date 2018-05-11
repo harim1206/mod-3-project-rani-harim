@@ -217,8 +217,8 @@ function execute(){
 }
 //
 
-let externalsounds = document.getElementById("externalsounds")
-externalsounds.addEventListener('click', newexecute)
+// let externalsounds = document.getElementById("externalsounds")
+// externalsounds.addEventListener('click', newexecute)
 
 function newexecute(){
 	console.log("clicked!")
