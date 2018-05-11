@@ -16,10 +16,14 @@
 	<script src="libraries/p5.sound.js"></script>
 </head>
 
-<div id="particles-js"></div>
+
 
 <body background="images/bcak.jpg">
-	<p style="text-align:center"><img src = "images/logo-copy-new.png" align="middle" class="center"/></p>
+
+	<p id="logo-wrapper-div">
+		<!-- <h1 id="testFont"> MU-Z-ART</h1> -->
+		<img src = "images/logo-copy-new.png" id="logo-image" align="middle" class="center"/>
+	</p>
 
 	<div id="canvas-wrap-div">
 		<div id="sketch-holder">
@@ -30,76 +34,28 @@
 	<div id="buttons-wrap-div" align="center">
 		<i class="far fa-play-circle fa-3x" id="play-button"></i>
 		<i class="far fa-play-circle fa-3x" id="externalsounds" style="color:orange"></i>
-		<!-- <i class="far fa-play-circle fa-3x" id="externalsoundnew" style="color:yellow"></i> -->
 		<i class="far fa-plus-square fa-3x" id="new-button"></i>
-		<input type="text" id="drawing-title" placeholder="Title">
-		<input type="text" id="drawing-person-name" placeholder="Your Name">
 		<i class="far fa-save fa-3x" id="save-button" style="color:orange"></i>
 		<i class="far fa-eye fa-3x" style="color:orange" id="show-list-button"></i>
-
 	</div>
 
 	<div id="saved-drawings-list-wrapper" align="center">
+		<form id="save-form">
+			<input type="text" id="drawing-title" placeholder="Title">
+			<input type="text" id="drawing-person-name" placeholder="Your Name">
+			<input type="submit" id="submit-button"></input>
+
+		</form>
+		<select id="drawing-select-list"></select>
 
 
 	</div>
 
-
-   <!-- <div class="drawingdetails" id="drawingcontainer">
-		 <div class="card" style="max-width: 3rem">
-		   <div class="card-body col-md-12 col-xs-12" style="max-width: 3rem">
-		     <h5 class="card-title col-md-3">Drawing Name</h5>
-		     <p class="card-text" style="max-width: 3rem"> User / User Notesdfsdjfskdjfhkjsdhfjksdhfkjhsdjkfhsdjkfhjksdhfjksdhfjksdhfjkhsdjkfhsdjkfhjksdfhjksdhfjkdshfjkshdfjkhkj</p>
-		     <a href="#" class="btn btn-primary">Go somewhere</a>
-		   </div>
-		 </div>
-	 </div> -->
-
-	 <!-- <div class="card" id="show">
-	 <div class="card-content" id="show">
-	   <span class="card-title activator grey-text text-darken-4" id="show">Card Title</span><br>
-		 <span class="card-title activator grey-text text-darken-4" id="show">Card Title</span>
- 	 </div> -->
-
-	<!-- <script src="sketch.js"></script> -->
+	<script src="eventHelperFunctions.js"></script>
 	<script src="option1.js"></script>
 	<script src="sound.js"></script>
-	<!-- <script src="app.js"></script>
-	<script src="particles.js"></script>
-	<script src="particles.js"></script>
-	<script src="stats.js"></script>
-	<script src="particles.min.js"></script> -->
-	<!-- <script src="option3.js"></script> -->
-	<!-- <script src="option2.js"></script> --> -->
-	<!-- <script src="sound2.js"></script> -->
 	<script src="explodingParticle.js"></script>
-	<!-- <script>particlesJS.load('particles-js', 'particles.json',
-	function() {
-      console.log("particles json loaded")
-	})</script>
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
+
 
 </body>
 </html>
-
-
-
-
-
-
-<!-- <div id="play-pause-button">
-<i class="fas fa-play" id="playButton"></i>
-<i class="fas fa-pause" id="pauseButton"></i>
-</div>
-
-<div id="drawing-title">
-<form id="drawing-title-form">
-<input type="text" name="title" placeholder="title"><br>
-<input type="submit" value="Save" id="submit-button">
-</form>
-</div> -->
-<!-- <button id = "execute"class="button1">Execute</button>
-<button id = "sound" class="button2">Sound</button>
-<button id = "option3" class="button3">Random</button>
-<button id = "option2" class="button4">Major Blues</button>
-<button id = "save" class="button5">Save Drawing</button> -->

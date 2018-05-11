@@ -1,11 +1,12 @@
 body {
   margin:0;
   padding:0;
-  overflow: hidden;
+  overflow: hidden
 }
 canvas {
   margin:auto;
 }
+
 
 h1 {
   font-family: 'Roboto';
@@ -14,6 +15,16 @@ h1 {
   color: orange;
   margin-top: 1%;
   margin-bottom: 1%;
+}
+
+#logo-image{
+  height: 100px;
+
+}
+
+#testFont{
+  font-family: 'Mbb_Doubleline';
+  text-align: center;
 }
 
 
@@ -27,6 +38,13 @@ h1 {
 
 #buttons-wrap-div{
   margin-top: 1%;
+}
+
+#logo-wrapper-div{
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+
 }
 
 .far{
@@ -54,121 +72,3 @@ h1 {
   margin-left: 10x
   margin-top: 10x
 }
-
-
-
-/* ---- reset ---- */
-
-body {
-  margin: 0;
-  font:normal 75% Arial, Helvetica, sans-serif;
-}
-
-canvas {
-  display: block;
-  vertical-align: bottom;
-}
-
-/* .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-} */
-
-img {
-    left: 0; right:0;
-    margin: auto;
-}
-/*  */
-
-
-/*
-.fa-play{
-margin-top: 3%;
-margin-left: 50%;
-color: pink;
-}
-
-.fa-pause{
-margin-top: 3%;
-margin-left: 50%;
-color: pink;
-}
-
-#drawing-title{
-margin-left: 45%;
-}
-
-#submit-button{
-margin-left: 6%;
-}
-
-
-
-*/
-
-
-
-
-
-/*
-.button1 {
-  position: fixed;
-  bottom: 10px;
-  left: 41%;
-  font-family: 'Source Code Pro';
-  font-size: 14px;
-  font-weight: bolder;
-  background-color: rgba(6, 229, 20, 1);
-  border: none;
-  border-radius: 10px;
-}
-
-.button2 {
-  position: fixed;
-  bottom: 10px;
-  left: 47%;
-  font-size: 14px;
-  font-family: 'Source Code Pro';
-  font-weight: bolder;
-  background-color: rgba(6, 229, 20, 1);
-  border: none;
-  border-radius: 20px;
-}
-
-.button3 {
-  position: fixed;
-  bottom: 10px;
-  left: 52%;
-  font-size: 14px;
-  font-family: 'Source Code Pro';
-  font-weight: bolder;
-  background-color: rgba(6, 229, 20, 1);
-  border: none;
-  border-radius: 20px;
-}
-
-.button4 {
-  position: fixed;
-  bottom: 10px;
-  left: 58%;
-  font-size: 14px;
-  font-family: 'Source Code Pro';
-  font-weight: bolder;
-  background-color: rgba(6, 229, 20, 1);
-  border: none;
-  border-radius: 20px;
-}
-
-.button5 {
-  position: fixed;
-  bottom: 10px;
-  left: 66%;
-  font-size: 14px;
-  font-family: 'Source Code Pro';
-  font-weight: bolder;
-  background-color: rgba(6, 229, 20, 1);
-  border: none;
-  border-radius: 20px;
-  } */
