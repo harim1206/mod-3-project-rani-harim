@@ -25,11 +25,25 @@ function preload() {
 	carribean = loadSound('assets/carribean.mp3')
 	chacha = loadSound('assets/chacha.mp3')
 	scratch = loadSound('assets/dj-scratching.mp3')
-  synth = loadSound('assets/Synth1.mp3')
-	synth3 = loadSound('assets/Synth3.mp3')
 	drum = loadSound('assets/drumloop2.mp3')
-	guitar = loadSound('assets/guitarloop4.mp3')
 	drum10 = loadSound('assets/drumloop10.mp3')
+	saxbb = loadSound('assets/saxophone/Bb.mp3')
+	saxc = loadSound('assets/saxophone/C.mp3')
+	saxeb = loadSound('assets/saxophone/Eb.mp3')
+	saxf4 = loadSound('assets/saxophone/F4.mp3')
+	saxg = loadSound('assets/saxophone/G.mp3')
+	saxgb = loadSound('assets/saxophone/Gb.mp3')
+	guitar2 = loadSound('assets/guitar/guitarloop2b.mp3')
+	guitar3 = loadSound('assets/guitar/guitarloop3.mp3')
+	guitar4 = loadSound('assets/guitar/guitarloop4.mp3')
+	guitar6 = loadSound('assets/guitar/guitarloop6b.mp3')
+	synth1 = loadSound('assets/synthsounds/Synth1.mp3')
+	synth3 = loadSound('assets/synthsounds/Synth3.mp3')
+	synth4 = loadSound('assets/synthsounds/Synth4.mp3')
+	synth5 = loadSound('assets/synthsounds/Synth5.mp3')
+
+
+  // windgong = loadSound('assets/saxophone/windgong.mp3')
 }
 
 
@@ -261,7 +275,164 @@ function newexecute(){
 	}
 }
 
+let saxsounds = document.getElementById("saxsounds")
+saxsounds.addEventListener('click', executesax)
+var countero = 0
 
+function executesax(){
+	for(let i = 0; i < paths.length; i++){
+
+		let removeInterval = setInterval(()=>{
+				if(paths[i].particles.length > 0){
+
+
+					countero++
+						if(countero === 7) {
+							console.log("Reached")
+							countero = 0
+						  saxc.stop()
+							saxeb.stop()
+							saxf4.stop()
+							saxgb.stop()
+							saxg.stop()
+							saxbb.stop()
+							saxc.stop()
+					}
+
+					// NOTE: Create a new sound object with the current particle's location as the frequency.
+					if(paths[i].particles[0].position.y < 70) {
+              saxc.play()
+					} else if (paths[i].particles[0].position.y < 140 && paths[i].particles[0].position.y >= 70 ) {
+             saxeb.play()
+					} else if (paths[i].particles[0].position.y < 140 && paths[i].particles[0].position.y >= 70 ) {
+             saxf4.play()
+					}else if (paths[i].particles[0].position.y < 210 && paths[i].particles[0].position.y >= 140 ) {
+             saxgb.play()
+					}else if (paths[i].particles[0].position.y < 280 && paths[i].particles[0].position.y >= 210 ) {
+            saxg.play()
+					}else if (paths[i].particles[0].position.y < 350 && paths[i].particles[0].position.y >= 280 ) {
+            saxbb.play()
+					} else {
+						saxc.play()
+					}
+
+					// EXPLOSION EFFECT ON Particle
+					explode(paths[i].particles[0].position.x, paths[i].particles[0].position.y)
+					paths[i].particles.splice(0,1)
+
+				}else{
+					window.clearInterval(removeInterval)
+				}
+		// NOTE: Particle Trigger Speed
+  }, 300)
+	}
+}
+
+
+let guitarsounds = document.getElementById("guitarsounds")
+guitarsounds.addEventListener('click', executeguitar)
+var counterp = 0
+
+function executeguitar(){
+	for(let i = 0; i < paths.length; i++){
+
+		let removeInterval = setInterval(()=>{
+				if(paths[i].particles.length > 0){
+
+
+					counterp++
+						if(counterp === 3) {
+							counterp = 0
+						  guitar2.stop()
+							guitar3.stop()
+							guitar4.stop()
+							guitar6.stop()
+					}
+
+					// NOTE: Create a new sound object with the current particle's location as the frequency.
+					if(paths[i].particles[0].position.y < 100) {
+              guitar2.play()
+					} else if (paths[i].particles[0].position.y < 200 && paths[i].particles[0].position.y >= 100 ) {
+             guitar3.play()
+					} else if (paths[i].particles[0].position.y < 300 && paths[i].particles[0].position.y >= 200 ) {
+             guitar4.play()
+					} else {
+						guitar6.play()
+					}
+
+					// EXPLOSION EFFECT ON Particle
+					explode(paths[i].particles[0].position.x, paths[i].particles[0].position.y)
+					paths[i].particles.splice(0,1)
+
+					if (paths[i].particles.length === 0) {
+						guitar2.stop()
+						guitar3.stop()
+						guitar4.stop()
+						guitar6.stop()
+					}
+
+				}else{
+					window.clearInterval(removeInterval)
+				}
+		// NOTE: Particle Trigger Speed
+  }, 500)
+	}
+}
+
+let synthsounds = document.getElementById("synthsounds")
+synthsounds.addEventListener('click', executesynth)
+var counters = 0
+
+function executesynth(){
+	for(let i = 0; i < paths.length; i++){
+
+		let removeInterval = setInterval(()=>{
+				if(paths[i].particles.length > 0){
+
+
+					counters++
+						if(counters === 3) {
+							counters = 0
+						  // guitar2.stop()
+							synth3.stop()
+							synth4.stop()
+							drum10.stop()
+					}
+					if(counters === 10) {
+						guitar2.stop()
+						drum10.stop()
+						counters = 0
+				}
+
+					// NOTE: Create a new sound object with the current particle's location as the frequency.
+					if(paths[i].particles[0].position.x < 200) {
+						synth3.play()
+					} else if (paths[i].particles[0].position.x < 500 && paths[i].particles[0].position.x >= 200 ) {
+             drum10.play()
+					} else if (paths[i].particles[0].position.x < 700 && paths[i].particles[0].position.x >= 500 ) {
+						 synth4.play()
+					} else {
+						guitar2.play()
+					}
+
+					// EXPLOSION EFFECT ON Particle
+					explode(paths[i].particles[0].position.x, paths[i].particles[0].position.y)
+					paths[i].particles.splice(0,1)
+
+					if (paths[i].particles.length === 0) {
+						guitar2.stop()
+						synth3.stop()
+						synth4.stop()
+						drum10.stop()
+					}
+
+				}else{
+					window.clearInterval(removeInterval)
+				}
+		// NOTE: Particle Trigger Speed
+  }, 500)
+	}
+}
 // function discosound(counter) {
 // 		if (counter === 1) {
 // 			drum10.play()
@@ -574,115 +745,3 @@ Particle.prototype.noteDisplay = function(other){
 //         x.style.display = "block";
 //     }
 // }
-
-
-// particlesJS("particle-container", {
-//   "particles": {
-//     "number": {
-//       "value": 80,
-//       "density": {
-//         "enable": true,
-//         "value_area": 800
-//       }
-//     },
-//     "color": {
-//       "value": "random"
-//     },
-//     "shape": {
-//       "type": "circle",
-//       "stroke": {
-//         "width": 0,
-//         "color": "#000000"
-//       },
-//       "polygon": {
-//         "nb_sides": 5
-//       },
-//       "image": {
-//         "src": "img/github.svg",
-//         "width": 100,
-//         "height": 100
-//       }
-//     },
-//     "opacity": {
-//       "value": 0.5,
-//       "random": false,
-//       "anim": {
-//         "enable": false,
-//         "speed": 1,
-//         "opacity_min": 0.1,
-//         "sync": false
-//       }
-//     },
-//     "size": {
-//       "value": 3,
-//       "random": true,
-//       "anim": {
-//         "enable": false,
-//         "speed": 40,
-//         "size_min": 0.1,
-//         "sync": false
-//       }
-//     },
-//     "line_linked": {
-//       "enable": false,
-//       "distance": 150,
-//       "color": "#ffffff",
-//       "opacity": 0.4,
-//       "width": 1
-//     },
-//     "move": {
-//       "enable": true,
-//       "speed": 1,
-//       "direction": "none",
-//       "random": false,
-//       "straight": false,
-//       "out_mode": "out",
-//       "bounce": false,
-//       "attract": {
-//         "enable": false,
-//         "rotateX": 600,
-//         "rotateY": 1200
-//       }
-//     }
-//   },
-//   "interactivity": {
-//     "detect_on": "canvas",
-//     "events": {
-//       "onhover": {
-//         "enable": false,
-//         "mode": "repulse"
-//       },
-//       "onclick": {
-//         "enable": false,
-//         "mode": "push"
-//       },
-//       "resize": true
-//     },
-//     "modes": {
-//       "grab": {
-//         "distance": 400,
-//         "line_linked": {
-//           "opacity": 1
-//         }
-//       },
-//       "bubble": {
-//         "distance": 400,
-//         "size": 40,
-//         "duration": 2,
-//         "opacity": 8,
-//         "speed": 3
-//       },
-//       "repulse": {
-//         "distance": 200,
-//         "duration": 0.4
-//       },
-//       "push": {
-//         "particles_nb": 4
-//       },
-//       "remove": {
-//         "particles_nb": 2
-//       }
-//     }
-//   },
-//   "retina_detect": true
-// });
