@@ -314,8 +314,6 @@
 	  // Move it
 	  this.position.add(this.velocity);
 
-
-
 	  // Slow it down
 	  this.velocity.mult(this.drag);
 	  // Fade it out
