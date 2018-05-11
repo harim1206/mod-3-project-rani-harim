@@ -24,8 +24,15 @@ function preload() {
 	tech = loadSound('assets/tech1.mp3')
 	carribean = loadSound('assets/carribean.mp3')
 	chacha = loadSound('assets/chacha.mp3')
-
+	scratch = loadSound('assets/dj-scratching.mp3')
+  synth = loadSound('assets/Synth1.mp3')
+	synth3 = loadSound('assets/Synth3.mp3')
+	drum = loadSound('assets/drumloop2.mp3')
+	guitar = loadSound('assets/guitarloop4.mp3')
+	drum10 = loadSound('assets/drumloop10.mp3')
 }
+
+
 
 
 function setup(position, extra1) {
@@ -35,9 +42,7 @@ function setup(position, extra1) {
 	current = createVector(0,0)
 	previous = createVector(0,0)
 	frameRate(60)
-
-
-	console.log('setup loaded')
+ console.log('setup loaded')
 
 	stroke(r, g, b);
 	fill(r, g, b, 127);
@@ -210,6 +215,74 @@ function execute(){
   }, 100)
 	}
 }
+//
+
+let externalsounds = document.getElementById("externalsounds")
+externalsounds.addEventListener('click', newexecute)
+
+function newexecute(){
+	console.log("clicked!")
+	drum10.stop()
+
+	console.log("3")
+
+	// debugger
+
+		for(let i = 0; i < paths.length; i++){
+			let removeInterval = setInterval(()=>{
+				 // console.log(explodingParticles)
+       if(paths[i].particles.length > 0){
+				 if(paths[i].particles[0].isNote){
+					 let thisNote = yPositionToNote(paths[i].particles[0].position.y)
+					 // console.log(`thisNote`, thisNote)
+					 let thisParticleSound = createSound(thisNote, 'saw-tooth')
+					 thisParticleSound.env.play()
+				 }
+
+
+						// discosound(counter)
+						// counter++
+						// if(counter === 30){
+						// 	counter = 0
+						// }
+
+						explode(paths[i].particles[0].position.x, paths[i].particles[0].position.y)
+
+
+
+					 paths[i].particles.splice(0,1)
+
+
+				 }else{
+					 // wave.freq(defaultFrequency)
+					 window.clearInterval(removeInterval)
+				 }
+		 }, random(900))
+	}
+}
+
+
+// function discosound(counter) {
+// 		if (counter === 1) {
+// 			drum10.play()
+//
+//        drum10.stop()
+// 			 guitar.stop()
+// 			 drum.play()
+// 		}  else if (counter === 13) {
+// 			 drum.stop()
+// 			 scratch.play()
+// 		}	 else  if (counter === 17) {
+// 		  guitar.play()
+// 		}  else  if (counter === 22) {
+// 			drum.play()
+// 		} else  if (counter === 35) {
+//     }  else  if (counter === 40) {
+// 			 drum.stop()
+// 			 drum10.play()
+// 	   } else {
+// 		}
+// }
 
 
 // HELPER FUNCTION: CONVERT Y POSITION TO NOTE SCALE
@@ -420,8 +493,6 @@ function mouseReleased(){
 // A Path is an array of particles
 function Path(){
 	this.particles = [];
-	// this.hue = random(100);
-
 	this.hue = random(r, g, b);
 	r = random(255);
 	g = random(255);
@@ -471,8 +542,8 @@ function Particle(position, hue, isNote){
 }
 
 Particle.prototype.display = function(other){
-	stroke(100)
-	fill(175, 175, 175)
+	stroke(r, g, b);
+	fill(r, g, b, 127);
 	ellipse(this.position.x,this.position.y, 2, 2)
 
 	if (other) {
@@ -482,23 +553,29 @@ Particle.prototype.display = function(other){
 
 // Colored particles for Notes
 Particle.prototype.noteDisplay = function(other){
-	// stroke(100)
-	// fill(255, 128, 128)
+
 	stroke(r, g, b);
 	fill(r, g, b, 127);
 	ellipse(this.position.x,this.position.y, 6, 6)
-
-	// ellipse(this.position.x,this.position.y, 5, 5)
-
 	if (other) {
 		line(this.position.x, this.position.y, other.position.x, other.position.y);
 	}
 
 }
 
-
-
+// let show = document.getElementById("show")
+// show.addEventListener('click', myFunction)
 //
+// function myFunction() {
+//     var x = document.getElementById("drawingcontainer");
+//     if (x.style.display === "block") {
+//         x.style.display = "none";
+//     } else {
+//         x.style.display = "block";
+//     }
+// }
+
+
 // particlesJS("particle-container", {
 //   "particles": {
 //     "number": {
