@@ -27,12 +27,6 @@ function preload() {
 	scratch = loadSound('assets/dj-scratching.mp3')
 	drum = loadSound('assets/drumloop2.mp3')
 	drum10 = loadSound('assets/drumloop10.mp3')
-	saxbb = loadSound('assets/saxophone/Bb.mp3')
-	saxc = loadSound('assets/saxophone/C.mp3')
-	saxeb = loadSound('assets/saxophone/Eb.mp3')
-	saxf4 = loadSound('assets/saxophone/F4.mp3')
-	saxg = loadSound('assets/saxophone/G.mp3')
-	saxgb = loadSound('assets/saxophone/Gb.mp3')
 	guitar2 = loadSound('assets/guitar/guitarloop2b.mp3')
 	guitar3 = loadSound('assets/guitar/guitarloop3.mp3')
 	guitar4 = loadSound('assets/guitar/guitarloop4.mp3')
@@ -41,7 +35,17 @@ function preload() {
 	synth3 = loadSound('assets/synthsounds/Synth3.mp3')
 	synth4 = loadSound('assets/synthsounds/Synth4.mp3')
 	synth5 = loadSound('assets/synthsounds/Synth5.mp3')
-
+	sax1 = loadSound('assets/saxriffs/sax1.mp3')
+	sax2 = loadSound('assets/saxriffs/sax2.mp3')
+	sax3 = loadSound('assets/saxriffs/sax3.mp3')
+	sax4 = loadSound('assets/saxriffs/sax4.mp3')
+	saxx1 = loadSound('assets/tenorsax/1239.mp3')
+	saxx2 = loadSound('assets/tenorsax/1240.mp3')
+	saxx3 = loadSound('assets/tenorsax/1241.mp3')
+	saxx4 = loadSound('assets/tenorsax/1242.mp3')
+	saxx5 = loadSound('assets/tenorsax/1243.mp3')
+	saxx6 = loadSound('assets/tenorsax/1244.mp3')
+	saxx7 = loadSound('assets/tenorsax/1245.mp3')
 
   // windgong = loadSound('assets/saxophone/windgong.mp3')
 }
@@ -275,59 +279,6 @@ function newexecute(){
 	}
 }
 
-let saxsounds = document.getElementById("saxsounds")
-saxsounds.addEventListener('click', executesax)
-var countero = 0
-
-function executesax(){
-	for(let i = 0; i < paths.length; i++){
-
-		let removeInterval = setInterval(()=>{
-				if(paths[i].particles.length > 0){
-
-
-					countero++
-						if(countero === 7) {
-							console.log("Reached")
-							countero = 0
-						  saxc.stop()
-							saxeb.stop()
-							saxf4.stop()
-							saxgb.stop()
-							saxg.stop()
-							saxbb.stop()
-							saxc.stop()
-					}
-
-					// NOTE: Create a new sound object with the current particle's location as the frequency.
-					if(paths[i].particles[0].position.y < 70) {
-              saxc.play()
-					} else if (paths[i].particles[0].position.y < 140 && paths[i].particles[0].position.y >= 70 ) {
-             saxeb.play()
-					} else if (paths[i].particles[0].position.y < 140 && paths[i].particles[0].position.y >= 70 ) {
-             saxf4.play()
-					}else if (paths[i].particles[0].position.y < 210 && paths[i].particles[0].position.y >= 140 ) {
-             saxgb.play()
-					}else if (paths[i].particles[0].position.y < 280 && paths[i].particles[0].position.y >= 210 ) {
-            saxg.play()
-					}else if (paths[i].particles[0].position.y < 350 && paths[i].particles[0].position.y >= 280 ) {
-            saxbb.play()
-					} else {
-						saxc.play()
-					}
-
-					// EXPLOSION EFFECT ON Particle
-					explode(paths[i].particles[0].position.x, paths[i].particles[0].position.y)
-					paths[i].particles.splice(0,1)
-
-				}else{
-					window.clearInterval(removeInterval)
-				}
-		// NOTE: Particle Trigger Speed
-  }, 300)
-	}
-}
-
 
 let guitarsounds = document.getElementById("guitarsounds")
 guitarsounds.addEventListener('click', executeguitar)
@@ -424,6 +375,116 @@ function executesynth(){
 						synth3.stop()
 						synth4.stop()
 						drum10.stop()
+					}
+
+				}else{
+					window.clearInterval(removeInterval)
+				}
+		// NOTE: Particle Trigger Speed
+  }, 500)
+	}
+}
+
+let saxsounds = document.getElementById("saxsounds")
+saxsounds.addEventListener('click', executesax)
+var counters = 0
+
+function executesax(){
+	for(let i = 0; i < paths.length; i++){
+
+		let removeInterval = setInterval(()=>{
+				if(paths[i].particles.length > 0){
+
+
+					counters++
+					if(counters === 10) {
+						sax1.stop()
+						sax2.stop()
+						sax3.stop()
+						sax4.stop()
+						counters = 0
+				}
+
+					// NOTE: Create a new sound object with the current particle's location as the frequency.
+					if(paths[i].particles[0].position.x < 200) {
+						sax1.play()
+					} else if (paths[i].particles[0].position.x < 500 && paths[i].particles[0].position.x >= 200 ) {
+             sax2.play()
+					} else if (paths[i].particles[0].position.x < 700 && paths[i].particles[0].position.x >= 500 ) {
+						 sax3.play()
+					} else {
+						sax4.play()
+					}
+
+					// EXPLOSION EFFECT ON Particle
+					explode(paths[i].particles[0].position.x, paths[i].particles[0].position.y)
+					paths[i].particles.splice(0,1)
+
+					if (paths[i].particles.length === 0) {
+						sax1.stop()
+						sax2.stop()
+						sax3.stop()
+						sax4.stop()
+					}
+
+				}else{
+					window.clearInterval(removeInterval)
+				}
+		// NOTE: Particle Trigger Speed
+  }, 500)
+	}
+}
+
+let saxsounds2 = document.getElementById("saxsounds2")
+saxsounds2.addEventListener('click', executesax2)
+var counters = 0
+
+function executesax2(){
+	for(let i = 0; i < paths.length; i++){
+
+		let removeInterval = setInterval(()=>{
+				if(paths[i].particles.length > 0){
+
+
+					counters++
+					if(counters === 9) {
+						saxx1.stop()
+						saxx2.stop()
+						saxx3.stop()
+						saxx4.stop()
+						saxx5.stop()
+						saxx6.stop()
+						saxx7.stop()
+						counters = 0
+				}
+
+					// NOTE: Create a new sound object with the current particle's location as the frequency.
+					if(paths[i].particles[0].position.x < 200) {
+						saxx1.play()
+					} else if (paths[i].particles[0].position.x < 400 && paths[i].particles[0].position.x >= 200 ) {
+             saxx2.play()
+					} else if (paths[i].particles[0].position.x < 600 && paths[i].particles[0].position.x >= 400 ) {
+						 saxx3.play()
+					 } else if (paths[i].particles[0].position.x < 800 && paths[i].particles[0].position.x >= 600 ) {
+						saxx4.play()
+				   } else if (paths[i].particles[0].position.x < 900 && paths[i].particles[0].position.x >= 800 ) {
+						saxx5.play()
+					} else {
+						saxx6.play()
+					}
+
+					// EXPLOSION EFFECT ON Particle
+					explode(paths[i].particles[0].position.x, paths[i].particles[0].position.y)
+					paths[i].particles.splice(0,1)
+
+					if (paths[i].particles.length === 0) {
+						saxx1.stop()
+						saxx2.stop()
+						saxx3.stop()
+						saxx4.stop()
+						saxx5.stop()
+						saxx6.stop()
+						saxx7.stop()
 					}
 
 				}else{
