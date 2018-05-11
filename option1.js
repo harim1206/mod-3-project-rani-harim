@@ -26,11 +26,29 @@ function preload() {
 	carribean = loadSound('assets/carribean.mp3')
 	chacha = loadSound('assets/chacha.mp3')
 	scratch = loadSound('assets/dj-scratching.mp3')
-  synth = loadSound('assets/Synth1.mp3')
-	synth3 = loadSound('assets/Synth3.mp3')
 	drum = loadSound('assets/drumloop2.mp3')
-	guitar = loadSound('assets/guitarloop4.mp3')
 	drum10 = loadSound('assets/drumloop10.mp3')
+	guitar2 = loadSound('assets/guitar/guitarloop2b.mp3')
+	guitar3 = loadSound('assets/guitar/guitarloop3.mp3')
+	guitar4 = loadSound('assets/guitar/guitarloop4.mp3')
+	guitar6 = loadSound('assets/guitar/guitarloop6b.mp3')
+	synth1 = loadSound('assets/synthsounds/Synth1.mp3')
+	synth3 = loadSound('assets/synthsounds/Synth3.mp3')
+	synth4 = loadSound('assets/synthsounds/Synth4.mp3')
+	synth5 = loadSound('assets/synthsounds/Synth5.mp3')
+	sax1 = loadSound('assets/saxriffs/sax1.mp3')
+	sax2 = loadSound('assets/saxriffs/sax2.mp3')
+	sax3 = loadSound('assets/saxriffs/sax3.mp3')
+	sax4 = loadSound('assets/saxriffs/sax4.mp3')
+	saxx1 = loadSound('assets/tenorsax/1239.mp3')
+	saxx2 = loadSound('assets/tenorsax/1240.mp3')
+	saxx3 = loadSound('assets/tenorsax/1241.mp3')
+	saxx4 = loadSound('assets/tenorsax/1242.mp3')
+	saxx5 = loadSound('assets/tenorsax/1243.mp3')
+	saxx6 = loadSound('assets/tenorsax/1244.mp3')
+	saxx7 = loadSound('assets/tenorsax/1245.mp3')
+
+  // windgong = loadSound('assets/saxophone/windgong.mp3')
 }
 
 function setup(position) {
@@ -84,9 +102,6 @@ function draw() {
 	})
 
 }
-
-
-
 
 //
 //
@@ -184,9 +199,7 @@ Particle.prototype.noteDisplay = function(other){
 }
 
 
-//
-//
-//
+
 //
 // EVENT LISTENERS
 //
@@ -210,3 +223,9 @@ saveButton.addEventListener('click',toggleSaveForm)
 
 let showButton = document.getElementById('show-list-button')
 showButton.addEventListener('click',populateDrawingsList)
+
+let guitarsounds = document.getElementById("guitarsounds")
+guitarsounds.addEventListener('click', executeguitar)
+
+let saxsounds2 = document.getElementById("saxsounds2")
+saxsounds2.addEventListener('click', executesax2)

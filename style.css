@@ -2,6 +2,7 @@ body {
   margin:0;
   padding:0;
   overflow: hidden
+
 }
 canvas {
   margin:auto;
@@ -9,14 +10,25 @@ canvas {
 
 
 h1 {
+  
   font-family: 'Roboto';
   font-weight: lighter;
   font-size: 65px;
-  color: orange;
+  color: red;
   margin-top: 1%;
   margin-bottom: 1%;
+  font-style: bold;
+
+
 }
 
+#logo-wrapper-div{
+  width: 1000px;
+  background-color: white;
+  opacity: 0.8;
+  margin-left: auto;
+  margin-right: auto;
+}
 #logo-image{
   height: 100px;
 
@@ -48,7 +60,7 @@ h1 {
 }
 
 .far{
-  color: orange;
+  color: red;
 }
 
 #yo {
@@ -56,7 +68,7 @@ h1 {
 }
 
 .fab {
-  color: orange;
+  color: red;
 }
 
 .card-content {
