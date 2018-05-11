@@ -1,25 +1,4 @@
 
-fetch('http://localhost:3000/api/v1/drawings')
-  .then((res) => res.json())
-  .then((json) => {
-    // debugger
-
-
-  })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // All of the paths
 // Each path is a line formed between mouse press and mouse release
 // Each path contains an array of particles
@@ -83,7 +62,7 @@ function draw() {
 		paths[paths.length-1].add(current)
 
 		// schedule next circle
-		next = millis() + 80;
+		next = millis() + 150;
 		previous.x = current.x
 		previous.y = current.y
 	}
@@ -109,6 +88,7 @@ function draw() {
 let playButton = document.getElementById('play-button')
 let newButton = document.getElementById('new-button')
 let saveButton = document.getElementById('save-button')
+let showButton = document.getElementById('show-list-button')
 
 
 // NOTE: BUTTONS
@@ -117,28 +97,91 @@ newButton.addEventListener('click',function(){
 	window.location.reload();
 })
 saveButton.addEventListener('click',function(){
+  let drawingTitle = document.getElementById('drawing-title')
+  let drawingPersonName = document.getElementById('drawing-person-name')
   let pathsJSON = pathsToJSON(paths)
 
+  // debugger
+
   let postData = {
-    name: "Harim",
-    title: "Mango",
-    data: pathsJSON
+    name: drawingPersonName.value,
+    title: drawingTitle.value,
+    data: pathsJSON[1]
   }
 
 	console.log(`pathsJSON: ${pathsJSON}`)
-	debugger
   fetch('http://localhost:3000/api/v1/drawings', {
     method: 'POST',
     body: JSON.stringify(postData),
     headers: {
       'Content-Type': 'application/json'
     }
-  }).then(res => {
-		res.json()
+  })
+})
 
-	}).then(json =>{
-		debugger
-	})
+
+
+
+// SHOW LIST BUTTON EVENT LISTENER
+showButton.addEventListener('click',function(){
+
+  let showWrapper = document.getElementById('saved-drawings-list-wrapper')
+
+  // debugger
+  let select = document.createElement('select')
+  fetch('http://localhost:3000/api/v1/drawings')
+    .then((res) => res.json())
+    .then((json) => {
+      // debugger
+      json.forEach(function(drawingObj){
+
+        let option = document.createElement('option')
+        option.innerHTML = drawingObj.id + "-" + drawingObj.title + "-" + drawingObj.name
+        option.setAttribute('value', drawingObj.id)
+        select.appendChild(option)
+
+
+
+      })
+
+    })
+  showWrapper.appendChild(select)
+
+  showWrapper.addEventListener('change',function(e){
+    console.log("HELLO")
+    let drawingId = e.target.options[e.target.selectedIndex].value
+
+    let fetchURL = 'http://localhost:3000/api/v1/drawings/' + drawingId
+
+    // debugger
+
+    fetch(fetchURL)
+      .then((res) => res.json())
+      .then((json) => {
+
+
+
+        paths = JSONStringToPaths(json.data)
+        debugger
+
+
+      })
+
+
+
+
+
+
+  })
+
+
+//   <select>
+//   <option value="volvo">Volvo</option>
+//   <option value="saab">Saab</option>
+//   <option value="mercedes">Mercedes</option>
+//   <option value="audi">Audi</option>
+// </select>
+
 
 })
 
@@ -151,7 +194,7 @@ function execute(){
 					// NOTE: Create a new sound object with the current particle's location as the frequency.
 					if(paths[i].particles[0].isNote){
 						let thisNote = yPositionToNote(paths[i].particles[0].position.y)
-						// console.log(`thisNote`, thisNote)
+						console.log(`thisNote`, thisNote)
 						let thisParticleSound = createSound(thisNote, 'sine')
 						thisParticleSound.env.play()
 					}
@@ -167,6 +210,121 @@ function execute(){
   }, 100)
 	}
 }
+
+
+// HELPER FUNCTION: CONVERT Y POSITION TO NOTE SCALE
+function yPositionToNote(yPosition, extra1){
+	return findClosestNote(majorScaleC3, 900 - (yPosition * 2))
+}
+
+// HELPER FUNCTION: FIND CLOSEST NOTE
+function findClosestNote(notesArray, input){
+	let closest = notesArray.reduce(function(prev, curr) {
+	  return (Math.abs(curr - input) < Math.abs(prev - input) ? curr : prev);
+	})
+
+	return closest
+}
+
+// HELPER FUNCTION
+function explode(x, y, extra1) {
+	let numParticles = random(2, 10)
+	for(let i = 0; i <= numParticles; i++){
+		let explodingParticle = new ExplodingParticle(x, y)
+		explodingParticles.push(explodingParticle)
+	}
+}
+
+// HELPER FUNCTION: takes in a paths array, returns
+// a json 'stringifiable' object
+
+function pathsToJSON(paths){
+  // paths: [P1,P2,P3,...]
+  // Path1.particles: [p1,p2,p3,...]
+  // p1.position: Vector(x,y)
+  // p1.isNote: T/F
+
+  // debugger
+
+  let pathsArray = []
+  let pathsArrayString = ""
+
+  // Iterate through each path
+  paths.forEach(function(path){
+    let pathData = []
+    let pathDataString = ""
+    // Iterate through each particles array
+    path.particles.forEach(function(particle){
+      let particleData = []
+      let particleDataString = ""
+
+      particleData.push(
+        particle.position.x,
+        particle.position.y,
+        particle.isNote
+      )
+
+      // particleDataString += '['
+      particleDataString += `${particle.position.x.toString()},`
+      particleDataString += `${particle.position.y.toString()},`
+      particleDataString += `${particle.isNote}`
+      particleDataString += '/'
+
+      pathData.push(particleData)
+      pathDataString += particleDataString
+
+      // debugger
+
+    })
+
+    pathDataString+='**endPATH'
+
+
+    pathsArray.push(pathData)
+    pathsArrayString += pathDataString
+
+
+    // debugger
+
+  })
+
+
+  // Return:
+  // [P1,P2,P3]
+  // P1: [[x1,y1,Note1],[x2,y2,Note2]]
+  // debugger
+  return [pathsArray, pathsArrayString]
+
+}
+
+
+// TAKES IN A STRING FROM JSON AND CONVERTS IT INTO PATH
+function JSONStringToPaths(string){
+
+  let splitByPath = string.split("**endPATH")
+  let paths = []
+
+  splitByPath.forEach(function(pathString){
+    let pathStringArray = pathString.split("/")
+    let path = new Path()
+
+    pathStringArray.forEach(function(particleString){
+      let particleStringArray = particleString.split(",")
+      let x = parseFloat(particleStringArray[0])
+      let y = parseFloat(particleStringArray[1])
+      let isNote = particleStringArray[2]
+      let vector = createVector(x,y)
+      path.add(vector)
+    })
+    paths.push(path)
+  })
+  debugger
+  return paths
+}
+
+
+
+
 //
 
 let externalsounds = document.getElementById("externalsounds")
@@ -228,70 +386,6 @@ function discosound(counter) {
 }
 
 
-// HELPER FUNCTION: CONVERT Y POSITION TO NOTE SCALE
-function yPositionToNote(yPosition, extra1){
-	return findClosestNote(majorScaleC3, 900 - (yPosition * 2))
-}
-
-// HELPER FUNCTION: FIND CLOSEST NOTE
-function findClosestNote(notesArray, input){
-	let closest = notesArray.reduce(function(prev, curr) {
-	  return (Math.abs(curr - input) < Math.abs(prev - input) ? curr : prev);
-	})
-
-	return closest
-}
-
-// HELPER FUNCTION
-function explode(x, y, extra1) {
-	let numParticles = random(2, 10)
-	for(let i = 0; i <= numParticles; i++){
-		let explodingParticle = new ExplodingParticle(x, y)
-		explodingParticles.push(explodingParticle)
-	}
-}
-
-// HELPER FUNCTION: takes in a paths array, returns
-// a json 'stringifiable' object
-
-function pathsToJSON(paths){
-  // paths: [P1,P2,P3,...]
-  // Path1.particles: [p1,p2,p3,...]
-  // p1.position: Vector(x,y)
-  // p1.isNote: T/F
-
-  let pathsArray = []
-
-  // Iterate through each path
-  paths.forEach(function(path){
-
-    let pathData = []
-    // Iterate through each particles array
-    path.particles.forEach(function(particle){
-      let particleData = []
-      particleData.push(
-        particle.position.x,
-        particle.position.y,
-        particle.isNote
-      )
-      pathData.push(particleData)
-
-    })
-    pathsArray.push(pathData)
-
-  })
-
-
-  // Return:
-  // [P1,P2,P3]
-  // P1: [[x1,y1,Note1],[x2,y2,Note2]]
-  return pathsArray
-
-}
-
-
-
-
 
 
 
@@ -343,7 +437,7 @@ Path.prototype.add = function(position){
 	}else{
 		this.particles.push(new Particle(position, this.hue, false))
 	}
-	this.particles.push(new Particle(position, this.hue))
+	// this.particles.push(new Particle(position, this.hue))
 }
 
 Path.prototype.update = function(){
@@ -402,126 +496,116 @@ Particle.prototype.noteDisplay = function(other){
 
 }
 
-let show = document.getElementById("show")
-show.addEventListener('click', myFunction)
-
-function myFunction() {
-    var x = document.getElementById("drawingcontainer");
-    if (x.style.display === "block") {
-        x.style.display = "none";
-    } else {
-        x.style.display = "block";
-    }
-}
 
 
-particlesJS("particle-container", {
-  "particles": {
-    "number": {
-      "value": 80,
-      "density": {
-        "enable": true,
-        "value_area": 800
-      }
-    },
-    "color": {
-      "value": "random"
-    },
-    "shape": {
-      "type": "circle",
-      "stroke": {
-        "width": 0,
-        "color": "#000000"
-      },
-      "polygon": {
-        "nb_sides": 5
-      },
-      "image": {
-        "src": "img/github.svg",
-        "width": 100,
-        "height": 100
-      }
-    },
-    "opacity": {
-      "value": 0.5,
-      "random": false,
-      "anim": {
-        "enable": false,
-        "speed": 1,
-        "opacity_min": 0.1,
-        "sync": false
-      }
-    },
-    "size": {
-      "value": 3,
-      "random": true,
-      "anim": {
-        "enable": false,
-        "speed": 40,
-        "size_min": 0.1,
-        "sync": false
-      }
-    },
-    "line_linked": {
-      "enable": false,
-      "distance": 150,
-      "color": "#ffffff",
-      "opacity": 0.4,
-      "width": 1
-    },
-    "move": {
-      "enable": true,
-      "speed": 1,
-      "direction": "none",
-      "random": false,
-      "straight": false,
-      "out_mode": "out",
-      "bounce": false,
-      "attract": {
-        "enable": false,
-        "rotateX": 600,
-        "rotateY": 1200
-      }
-    }
-  },
-  "interactivity": {
-    "detect_on": "canvas",
-    "events": {
-      "onhover": {
-        "enable": false,
-        "mode": "repulse"
-      },
-      "onclick": {
-        "enable": false,
-        "mode": "push"
-      },
-      "resize": true
-    },
-    "modes": {
-      "grab": {
-        "distance": 400,
-        "line_linked": {
-          "opacity": 1
-        }
-      },
-      "bubble": {
-        "distance": 400,
-        "size": 40,
-        "duration": 2,
-        "opacity": 8,
-        "speed": 3
-      },
-      "repulse": {
-        "distance": 200,
-        "duration": 0.4
-      },
-      "push": {
-        "particles_nb": 4
-      },
-      "remove": {
-        "particles_nb": 2
-      }
-    }
-  },
-  "retina_detect": true
-});
+//
+// particlesJS("particle-container", {
+//   "particles": {
+//     "number": {
+//       "value": 80,
+//       "density": {
+//         "enable": true,
+//         "value_area": 800
+//       }
+//     },
+//     "color": {
+//       "value": "random"
+//     },
+//     "shape": {
+//       "type": "circle",
+//       "stroke": {
+//         "width": 0,
+//         "color": "#000000"
+//       },
+//       "polygon": {
+//         "nb_sides": 5
+//       },
+//       "image": {
+//         "src": "img/github.svg",
+//         "width": 100,
+//         "height": 100
+//       }
+//     },
+//     "opacity": {
+//       "value": 0.5,
+//       "random": false,
+//       "anim": {
+//         "enable": false,
+//         "speed": 1,
+//         "opacity_min": 0.1,
+//         "sync": false
+//       }
+//     },
+//     "size": {
+//       "value": 3,
+//       "random": true,
+//       "anim": {
+//         "enable": false,
+//         "speed": 40,
+//         "size_min": 0.1,
+//         "sync": false
+//       }
+//     },
+//     "line_linked": {
+//       "enable": false,
+//       "distance": 150,
+//       "color": "#ffffff",
+//       "opacity": 0.4,
+//       "width": 1
+//     },
+//     "move": {
+//       "enable": true,
+//       "speed": 1,
+//       "direction": "none",
+//       "random": false,
+//       "straight": false,
+//       "out_mode": "out",
+//       "bounce": false,
+//       "attract": {
+//         "enable": false,
+//         "rotateX": 600,
+//         "rotateY": 1200
+//       }
+//     }
+//   },
+//   "interactivity": {
+//     "detect_on": "canvas",
+//     "events": {
+//       "onhover": {
+//         "enable": false,
+//         "mode": "repulse"
+//       },
+//       "onclick": {
+//         "enable": false,
+//         "mode": "push"
+//       },
+//       "resize": true
+//     },
+//     "modes": {
+//       "grab": {
+//         "distance": 400,
+//         "line_linked": {
+//           "opacity": 1
+//         }
+//       },
+//       "bubble": {
+//         "distance": 400,
+//         "size": 40,
+//         "duration": 2,
+//         "opacity": 8,
+//         "speed": 3
+//       },
+//       "repulse": {
+//         "distance": 200,
+//         "duration": 0.4
+//       },
+//       "push": {
+//         "particles_nb": 4
+//       },
+//       "remove": {
+//         "particles_nb": 2
+//       }
+//     }
+//   },
+//   "retina_detect": true
+// });
