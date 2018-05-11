@@ -9,17 +9,6 @@ fetch('http://localhost:3000/api/v1/drawings')
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 // All of the paths
 // Each path is a line formed between mouse press and mouse release
 // Each path contains an array of particles
@@ -45,8 +34,15 @@ function preload() {
 	tech = loadSound('assets/tech1.mp3')
 	carribean = loadSound('assets/carribean.mp3')
 	chacha = loadSound('assets/chacha.mp3')
-
+	scratch = loadSound('assets/dj-scratching.mp3')
+  synth = loadSound('assets/Synth1.mp3')
+	synth3 = loadSound('assets/Synth3.mp3')
+	drum = loadSound('assets/drumloop2.mp3')
+	guitar = loadSound('assets/guitarloop4.mp3')
+	drum10 = loadSound('assets/drumloop10.mp3')
 }
+
+
 
 
 function setup(position, extra1) {
@@ -56,9 +52,7 @@ function setup(position, extra1) {
 	current = createVector(0,0)
 	previous = createVector(0,0)
 	frameRate(60)
-
-
-	console.log('setup loaded')
+ console.log('setup loaded')
 
 	stroke(r, g, b);
 	fill(r, g, b, 127);
@@ -174,6 +168,7 @@ externalsounds.addEventListener('click', newexecute)
 
 function newexecute(){
 	console.log("clicked!")
+	drum10.stop()
 
 	console.log("3")
 
@@ -182,12 +177,20 @@ function newexecute(){
 		for(let i = 0; i < paths.length; i++){
 			let removeInterval = setInterval(()=>{
 				 // console.log(explodingParticles)
-					if(paths[i].particles.length > 0){
-						discosound(counter)
-						counter++
-						if(counter === 3){
-							counter = 0
-						}
+       if(paths[i].particles.length > 0){
+				 if(paths[i].particles[0].isNote){
+					 let thisNote = yPositionToNote(paths[i].particles[0].position.y)
+					 // console.log(`thisNote`, thisNote)
+					 let thisParticleSound = createSound(thisNote, 'saw-tooth')
+					 thisParticleSound.env.play()
+				 }
+
+
+						// discosound(counter)
+						// counter++
+						// if(counter === 30){
+						// 	counter = 0
+						// }
 
 						explode(paths[i].particles[0].position.x, paths[i].particles[0].position.y)
 
@@ -195,37 +198,37 @@ function newexecute(){
 
 					 paths[i].particles.splice(0,1)
 
+
 				 }else{
 					 // wave.freq(defaultFrequency)
 					 window.clearInterval(removeInterval)
 				 }
-		 }, random(150, 500))
+		 }, random(900))
 	}
 }
 
 
-
-
-function discosound(counter) {
-		if (counter === 1) {
-			carribean.play()
-			console.log(1)
-		}
-		else if (counter === 2) {
-			carribean.play()
-			tango.play()
-			console.log(2)
-			chacha.play()
-
-		} else  if (counter === 3) {
-			carribean.play()
-			song.play()
-			console.log(3)
-
-		} else {
-			console.log("Here")
-		}
-}
+// function discosound(counter) {
+// 		if (counter === 1) {
+// 			drum10.play()
+//
+//        drum10.stop()
+// 			 guitar.stop()
+// 			 drum.play()
+// 		}  else if (counter === 13) {
+// 			 drum.stop()
+// 			 scratch.play()
+// 		}	 else  if (counter === 17) {
+// 		  guitar.play()
+// 		}  else  if (counter === 22) {
+// 			drum.play()
+// 		} else  if (counter === 35) {
+//     }  else  if (counter === 40) {
+// 			 drum.stop()
+// 			 drum10.play()
+// 	   } else {
+// 		}
+// }
 
 
 // HELPER FUNCTION: CONVERT Y POSITION TO NOTE SCALE
@@ -326,8 +329,6 @@ function mouseReleased(){
 // A Path is an array of particles
 function Path(){
 	this.particles = [];
-	// this.hue = random(100);
-
 	this.hue = random(r, g, b);
 	r = random(255);
 	g = random(255);
@@ -377,8 +378,8 @@ function Particle(position, hue, isNote){
 }
 
 Particle.prototype.display = function(other){
-	stroke(100)
-	fill(175, 175, 175)
+	stroke(r, g, b);
+	fill(r, g, b, 127);
 	ellipse(this.position.x,this.position.y, 2, 2)
 
 	if (other) {
@@ -388,140 +389,136 @@ Particle.prototype.display = function(other){
 
 // Colored particles for Notes
 Particle.prototype.noteDisplay = function(other){
-	// stroke(100)
-	// fill(255, 128, 128)
+
 	stroke(r, g, b);
 	fill(r, g, b, 127);
 	ellipse(this.position.x,this.position.y, 6, 6)
-
-	// ellipse(this.position.x,this.position.y, 5, 5)
-
 	if (other) {
 		line(this.position.x, this.position.y, other.position.x, other.position.y);
 	}
 
 }
 
-let show = document.getElementById("show")
-show.addEventListener('click', myFunction)
+// let show = document.getElementById("show")
+// show.addEventListener('click', myFunction)
+//
+// function myFunction() {
+//     var x = document.getElementById("drawingcontainer");
+//     if (x.style.display === "block") {
+//         x.style.display = "none";
+//     } else {
+//         x.style.display = "block";
+//     }
+// }
 
-function myFunction() {
-    var x = document.getElementById("drawingcontainer");
-    if (x.style.display === "block") {
-        x.style.display = "none";
-    } else {
-        x.style.display = "block";
-    }
-}
 
-
-particlesJS("particle-container", {
-  "particles": {
-    "number": {
-      "value": 80,
-      "density": {
-        "enable": true,
-        "value_area": 800
-      }
-    },
-    "color": {
-      "value": "random"
-    },
-    "shape": {
-      "type": "circle",
-      "stroke": {
-        "width": 0,
-        "color": "#000000"
-      },
-      "polygon": {
-        "nb_sides": 5
-      },
-      "image": {
-        "src": "img/github.svg",
-        "width": 100,
-        "height": 100
-      }
-    },
-    "opacity": {
-      "value": 0.5,
-      "random": false,
-      "anim": {
-        "enable": false,
-        "speed": 1,
-        "opacity_min": 0.1,
-        "sync": false
-      }
-    },
-    "size": {
-      "value": 3,
-      "random": true,
-      "anim": {
-        "enable": false,
-        "speed": 40,
-        "size_min": 0.1,
-        "sync": false
-      }
-    },
-    "line_linked": {
-      "enable": false,
-      "distance": 150,
-      "color": "#ffffff",
-      "opacity": 0.4,
-      "width": 1
-    },
-    "move": {
-      "enable": true,
-      "speed": 1,
-      "direction": "none",
-      "random": false,
-      "straight": false,
-      "out_mode": "out",
-      "bounce": false,
-      "attract": {
-        "enable": false,
-        "rotateX": 600,
-        "rotateY": 1200
-      }
-    }
-  },
-  "interactivity": {
-    "detect_on": "canvas",
-    "events": {
-      "onhover": {
-        "enable": false,
-        "mode": "repulse"
-      },
-      "onclick": {
-        "enable": false,
-        "mode": "push"
-      },
-      "resize": true
-    },
-    "modes": {
-      "grab": {
-        "distance": 400,
-        "line_linked": {
-          "opacity": 1
-        }
-      },
-      "bubble": {
-        "distance": 400,
-        "size": 40,
-        "duration": 2,
-        "opacity": 8,
-        "speed": 3
-      },
-      "repulse": {
-        "distance": 200,
-        "duration": 0.4
-      },
-      "push": {
-        "particles_nb": 4
-      },
-      "remove": {
-        "particles_nb": 2
-      }
-    }
-  },
-  "retina_detect": true
-});
+// particlesJS("particle-container", {
+//   "particles": {
+//     "number": {
+//       "value": 80,
+//       "density": {
+//         "enable": true,
+//         "value_area": 800
+//       }
+//     },
+//     "color": {
+//       "value": "random"
+//     },
+//     "shape": {
+//       "type": "circle",
+//       "stroke": {
+//         "width": 0,
+//         "color": "#000000"
+//       },
+//       "polygon": {
+//         "nb_sides": 5
+//       },
+//       "image": {
+//         "src": "img/github.svg",
+//         "width": 100,
+//         "height": 100
+//       }
+//     },
+//     "opacity": {
+//       "value": 0.5,
+//       "random": false,
+//       "anim": {
+//         "enable": false,
+//         "speed": 1,
+//         "opacity_min": 0.1,
+//         "sync": false
+//       }
+//     },
+//     "size": {
+//       "value": 3,
+//       "random": true,
+//       "anim": {
+//         "enable": false,
+//         "speed": 40,
+//         "size_min": 0.1,
+//         "sync": false
+//       }
+//     },
+//     "line_linked": {
+//       "enable": false,
+//       "distance": 150,
+//       "color": "#ffffff",
+//       "opacity": 0.4,
+//       "width": 1
+//     },
+//     "move": {
+//       "enable": true,
+//       "speed": 1,
+//       "direction": "none",
+//       "random": false,
+//       "straight": false,
+//       "out_mode": "out",
+//       "bounce": false,
+//       "attract": {
+//         "enable": false,
+//         "rotateX": 600,
+//         "rotateY": 1200
+//       }
+//     }
+//   },
+//   "interactivity": {
+//     "detect_on": "canvas",
+//     "events": {
+//       "onhover": {
+//         "enable": false,
+//         "mode": "repulse"
+//       },
+//       "onclick": {
+//         "enable": false,
+//         "mode": "push"
+//       },
+//       "resize": true
+//     },
+//     "modes": {
+//       "grab": {
+//         "distance": 400,
+//         "line_linked": {
+//           "opacity": 1
+//         }
+//       },
+//       "bubble": {
+//         "distance": 400,
+//         "size": 40,
+//         "duration": 2,
+//         "opacity": 8,
+//         "speed": 3
+//       },
+//       "repulse": {
+//         "distance": 200,
+//         "duration": 0.4
+//       },
+//       "push": {
+//         "particles_nb": 4
+//       },
+//       "remove": {
+//         "particles_nb": 2
+//       }
+//     }
+//   },
+//   "retina_detect": true
+// });
